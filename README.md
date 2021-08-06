@@ -36,7 +36,7 @@ TRPGの需要はコロナの影響で広まりつつあります。
 - アプリケーション詳細設計
 <未作成>
 
-## チャレンジ要素一覧(AI教養コース)
+## チャレンジ要素一覧(AI教養コース) 更新日時7/6(金)
 https://docs.google.com/spreadsheets/d/1rNhvViTYHUX8UWo-F3ubE_bQHRORJg5cxhA_pOMtpfw/edit#gid=0
 
 ## 開発環境
