@@ -30,7 +30,7 @@ TRPGの需要はコロナの影響で広まりつつあります。
 
 ## 設計書
 - ER図
-<未作成>
+https://app.diagrams.net/#G176IoTk5TD9w0ogbeSavnMTKokNmBS5Up
 - テーブル定義書
 <未作成>
 - アプリケーション詳細設計
