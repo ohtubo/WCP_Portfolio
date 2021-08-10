@@ -31,6 +31,8 @@ TRPGの需要はコロナの影響で広まりつつあります。
 ## 設計書
 - ER図
 https://app.diagrams.net/#G176IoTk5TD9w0ogbeSavnMTKokNmBS5Up
+- ワイヤーフレーム
+https://xd.adobe.com/view/2f75237d-f012-44bf-9d58-8449e36a93d4-7a26/
 - テーブル定義書
 <未作成>
 - アプリケーション詳細設計
