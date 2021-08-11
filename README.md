@@ -26,13 +26,18 @@ TRPGの需要はコロナの影響で広まりつつあります。
 自分にマッチしたTRPGシナリオを探している人。
 
 ## 主な利用シーン
-シナリオを投稿する。好みのシナリオを探す。
+シナリオを誰かに見せたくて投稿する時。
+好みのシナリオを探したい時。
 
 ## 設計書
+-機能一覧表
+https://docs.google.com/spreadsheets/d/1lOLVNDPVCSavPfST7lRElqKeAZa9GFW2j2m4UXNQXnA/edit#gid=0
 - ER図
 https://app.diagrams.net/#G176IoTk5TD9w0ogbeSavnMTKokNmBS5Up
 - ワイヤーフレーム
 https://xd.adobe.com/view/2f75237d-f012-44bf-9d58-8449e36a93d4-7a26/
+- 画面遷移
+https://app.diagrams.net/#G1qBF8med9VQJlMrJ94OB0VckN407g3MWg
 - テーブル定義書
 <未作成>
 - アプリケーション詳細設計
