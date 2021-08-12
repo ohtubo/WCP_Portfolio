@@ -1,24 +1,58 @@
-# README
+﻿# TRPGにはまろう!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+TRPG(テーブルトークRPG)とは、テーブルゲームのジャンルのひとつです。  
+進行役とプレイヤーに別れルールブックに記載されたルールと  
+ルールブックの世界観を元に作成されたシナリオを元に  
+皆で1つの物語を作り上げていくゲームです。  
+本サイトではTRPGに欠かせないシナリオを投稿し、好きなシナリオを探すために作成したサイトです。
 
-Things you may want to cover:
+## サイトテーマ
+TRPGのシナリオ投稿、好みのシナリオ検索サイト
 
-* Ruby version
+## テーマを選んだ理由
+TRPGの需要はコロナの影響で広まりつつあります。  
+リモートで出来る遊びとして、ルールブックと通信環境さえあればどこでもできるTRPGは親和性があったためです。  
+また人気YouTuber同士でTRPGで遊ぶ動画も近年増えておりTRPGの需要は若い人を中心に増々広がると考えられます。  
+しかし、TRPGで遊ぼうとしてまずつまずくのがシナリオ作成です。  
+想像力と文章力が求められるシナリオ作成は初めての方には難しいからです。  
+また、シナリオを作るのが得意で個人ブログや有名サイトに投稿している方もいますが、  
+シナリオ投稿量も多く埋もれがちになってしまいます。  
+そこで、本サイトでは細かなタグ付けやAIによる関連づけを行うことで、  
+自分にマッチしたシナリオを見つけて楽しんで頂くことを目標に設立しました。  
 
-* System dependencies
+## ターゲットユーザ
+作ったTRPGシナリオを公開したい人。  
+自分にマッチしたTRPGシナリオを探している人。
 
-* Configuration
+## 主な利用シーン
+シナリオを誰かに見せたくて投稿する時。
+好みのシナリオを探したい時。
 
-* Database creation
+## 設計書
+-機能一覧表
+https://docs.google.com/spreadsheets/d/1lOLVNDPVCSavPfST7lRElqKeAZa9GFW2j2m4UXNQXnA/edit#gid=0
+- ER図
+https://app.diagrams.net/#G176IoTk5TD9w0ogbeSavnMTKokNmBS5Up
+- ワイヤーフレーム
+https://xd.adobe.com/view/2f75237d-f012-44bf-9d58-8449e36a93d4-7a26/
+- 画面遷移
+https://app.diagrams.net/#G1qBF8med9VQJlMrJ94OB0VckN407g3MWg
+- テーブル定義書
+<未作成>
+- アプリケーション詳細設計
+<未作成>
 
-* Database initialization
+## チャレンジ要素一覧(AI教養コース) 更新日時7/6(金)
+https://docs.google.com/spreadsheets/d/1rNhvViTYHUX8UWo-F3ubE_bQHRORJg5cxhA_pOMtpfw/edit#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Windows10
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材(URL)
+　未定
