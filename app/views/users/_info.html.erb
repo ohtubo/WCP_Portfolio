@@ -1,0 +1,15 @@
+<table>
+  <tr><%= attachment_image_tag(user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg") %></tr>
+  <tr>
+	  <th>name</th>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+	  <th><%= user.self_introduction %></th>
+  </tr>
+</table>
+
+<div>
+  <%= link_to 'アカウント',edit_user_path(user),class: "edit_user_#{user.id}" %>
+</div>
