@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= usertitle %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= attachment_image_tag(user, :icon_image, :fill, 50, 50, fallback: "no_image.jpg",size: '50x50') %></td>
+        <td>
+          <%= link_to user_path(user), class: "user_#{user.id}"  do %>
+            <%= user.name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
