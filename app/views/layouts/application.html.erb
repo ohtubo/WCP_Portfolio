@@ -4,7 +4,6 @@
     <title>WCPPortfolio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,13 +11,13 @@
   <body>
     <% if user_signed_in? %>
       <li>
-        <%= link_to "シナリオ投稿", root_path %>
+        <%= link_to "シナリオ投稿", new_scenario_path %>
       </li>
       <li>
         <%= link_to "シナリオ検索", root_path %>
       </li>
       <li>
-        <%= link_to "ランキング", root_path %>
+        <%= link_to "ランキング", scenarios_path %>
       </li>
       <li>
         <%= link_to "マイページ", user_path(current_user.id) %>

@@ -1,0 +1,45 @@
+<h2>シナリオを投稿</h2>
+
+<%= form_with model:@scenario, local:true do |f| %>
+  <div>
+    <%= f.label "タイトル" %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label "概要" %></br>
+    <%= f.text_area :overview , :size=>"60x15"%>
+  </div>
+  <div>
+    <%= f.label "シナリオ画像" %>
+    <%= f.attachment_field :scenario_image %>
+  </div>
+  <div>
+    <%= f.label "システムカテゴリ" %>
+    <%= f.select :system_category, Scenario.categories.keys %>
+  </div>
+  <div>
+    <%= f.label "シナリオタグ" %>
+
+  </div>
+  <div>
+    <%= f.label "難易度" %>
+    <%= f.select :level, Scenario.levels.keys %>
+  </div>
+  <div>
+    <%= f.label "推奨人数" %>
+    <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys %>
+    ～
+    <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys %>
+  </div>
+  <div>
+    <%= f.label "プレイ時間" %>
+    <%= f.select :play_genre, Scenario.play_genres.keys %>
+    <%= f.select :play_time, Scenario.play_times.keys %>
+  </div>
+  <div>
+    <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x200" %>
+  </div>
+  <div>
+    <%= f.submit "シナリオを投稿する"%>
+  </div>
+<% end %>
