@@ -1,7 +1,10 @@
 class Scenario < ApplicationRecord
 
   attachment :scenario_image, destroy: false
-
+  
+  belongs_to :user
+  has_many :scenario_comment, dependent: :destroy
+  
   enum categories: {
     "シナリオを選択": 0,
     "クトゥルフ": 1,

@@ -1,0 +1,2 @@
+module ScenarioCommentsHelper
+end

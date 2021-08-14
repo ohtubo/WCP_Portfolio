@@ -1,0 +1,61 @@
+<!--いいね-->
+
+
+<!--作品紹介-->
+<h2><%= @scenario.title %></h2>
+<div>
+  <%= @scenario.system_category %></br>
+  作者：<%= link_to @scenario.user.name, user_path(@scenario.user) %></br>
+  難易度：<%= @scenario.level %>|人数：<%= @scenario.lower_limit_count %>～<%= @scenario.upper_limit_count %>
+  |プレイ時間<%= @scenario.play_time %>[<%= @scenario.play_genre %>]</br>
+  <%= @scenario.overview %>
+</div>
+<div>
+  <%= attachment_image_tag @scenario, :scenario_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+</div>
+<div>
+  <%= @scenario.content %>
+</div>
+<!--作品コメント一覧-->
+<div class="comments">
+<p>コメント件数：<%= @scenario.scenario_comment.count %></p>
+<% @scenario.scenario_comment.each do |scenario_comment| %>
+  <p><%= attachment_image_tag(scenario_comment.user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %></p>
+  <%= scenario_comment.user.name %><%= scenario_comment.created_at %></br>
+  <%= scenario_comment.comment %>
+  <% if scenario_comment.user == current_user %>
+  <div class="comment-delete">
+    <%= link_to "削除", scenario_scenario_comment_path(scenario_comment.scenario, scenario_comment), method: :delete %>
+  </div>
+  <% end %>
+<% end %>
+</div>
+<!--作品コメント入力-->
+<div class="new-comment">
+<%= form_with(model:[@scenario, @Scenario_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+<% end %>
+</div>
+
+<!--ユーザー情報-->
+<table>
+  <tr><%= attachment_image_tag(@user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %></tr>
+  <tr>
+	  <th>
+	    <%= @user.name %></br>
+	    <%= @user.self_introduction %>
+    </th>
+  </tr>
+  <tr>
+	  <th>
+	    <% if current_user =! @user %>
+        <% if current_user.following?(@user) %>
+          <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+        <% end %>
+	    <% end %>
+	  </th>
+  </tr>
+</table>

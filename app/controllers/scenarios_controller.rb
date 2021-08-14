@@ -17,6 +17,16 @@ class ScenariosController < ApplicationController
     # end
   end
   
+  def show
+    @scenario = Scenario.find(params[:id])
+    @user = @scenario.user
+    @Scenario_comment = ScenarioComment.new
+  end
+  
+  def index
+    @scenarios = Scenario.all
+  end
+  
   private
 
   def scenario_params

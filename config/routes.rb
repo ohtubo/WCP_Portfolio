@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 
-  resources :scenarios, only: [:new, :create, :index, :show, :edit, :update]
+  resources :scenarios, only: [:new, :create, :index, :show, :edit, :update] do
+    resources :scenario_comments, only: [:create, :destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
