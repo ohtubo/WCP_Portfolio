@@ -1,15 +1,15 @@
 <table>
   <thead>
     <tr>
-      <th><h2>シナリオを投稿</h2></th>
+      <th colspan="2"><h2>シナリオを投稿</h2></th>
     </tr>
   </thead>
   <tbody>
     <%= form_with model:@scenario, local:true do |f| %>
     <tr>
-      <td><%= f.label "タイトル" %></td>
+      <td style="width: 10%"><%= f.label "タイトル" %></td>
       <td><%= f.text_field :title %></td>
-      <td></td>
+      <td style="width: 10%"></td>
       <td></td>
     </tr>
     <tr>
@@ -65,8 +65,8 @@
       <td colspan="4"><%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x200" %></td>
     </tr>
     <tr>
-      <td><%= f.submit "シナリオを投稿する"%></td>
       <td></td>
+      <td><%= f.submit "シナリオを投稿する"%></td>
       <td></td>
       <td></td>
     </tr>

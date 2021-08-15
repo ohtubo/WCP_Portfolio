@@ -30,8 +30,8 @@
 </div>
 <!--作品コメント一覧-->
 <div class="comments">
-<p>コメント件数：<%= @scenario.scenario_comment.count %></p>
-<% @scenario.scenario_comment.each do |scenario_comment| %>
+<p>コメント件数：<%= @scenario.scenario_comments.count %></p>
+<% @scenario.scenario_comments.each do |scenario_comment| %>
   <p><%= attachment_image_tag(scenario_comment.user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %></p>
   <%= scenario_comment.user.name %><%= scenario_comment.created_at %></br>
   <%= scenario_comment.comment %>

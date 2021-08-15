@@ -17,6 +17,16 @@ class ScenariosController < ApplicationController
     end
   end
 
+  def edit
+    @scenario = Scenario.find(params[:id])
+  end
+
+  def update
+    @scenario = Scenario.find(params[:id])
+    @scenario.update(scenario_params)
+    redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました"
+  end
+
   def show
     @scenario = Scenario.find(params[:id])
     @user = @scenario.user

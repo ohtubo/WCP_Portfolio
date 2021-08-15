@@ -26,7 +26,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
-  has_many :Scenarios, dependent: :destroy
+  has_many :scenarios, dependent: :destroy
   has_many :scenario_comments, dependent: :destroy
   has_many :scenario_favorites, dependent: :destroy
   

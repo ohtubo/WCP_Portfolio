@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @scenario = Scenario.find(params[:id])
+    @scenarios = @user.scenarios
   end
 
   def edit

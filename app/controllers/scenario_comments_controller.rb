@@ -1,7 +1,7 @@
 class ScenarioCommentsController < ApplicationController
   def create
     scenario = Scenario.find(params[:scenario_id])
-    comment = current_user.scenario_comment.new(scenario_comment_params)
+    comment = current_user.scenario_comments.new(scenario_comment_params)
     comment.scenario_id = scenario.id
     comment.save
     redirect_to scenario_path(scenario)

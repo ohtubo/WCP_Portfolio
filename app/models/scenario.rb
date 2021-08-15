@@ -3,7 +3,7 @@ class Scenario < ApplicationRecord
   attachment :scenario_image, destroy: false
 
   belongs_to :user
-  has_many :scenario_comment, dependent: :destroy
+  has_many :scenario_comments, dependent: :destroy
   has_many :scenario_favorites, dependent: :destroy
 
   has_many  :scenario_tags, dependent: :destroy

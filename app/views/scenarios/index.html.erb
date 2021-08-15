@@ -1,4 +1,3 @@
-
 <table>
   <thead>
     <tr>
@@ -11,39 +10,5 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
-    <% @scenarios.each do |scenario| %>
-      <tr>
-        <td>
-          <%= link_to scenario_path(scenario) do %>
-          <%= attachment_image_tag scenario, :scenario_image, :fill, 70, 90, fallback: "no_image.jpg",size: '70x90'%>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id}" %></br>
-          <%= scenario.system_category %> |
-          <% scenario.tags.each do |tag| %>
-             <%= tag.tag %>
-          <% end %></br>
-          作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
-          <%= scenario.overview %>
-        </td>
-        <td>
-          <% if scenario.favorited_by?(current_user) %>
-            <p>
-              <%= link_to scenario_scenario_favorite_path(scenario,scenario ), method: :delete do %>
-                ♥<%= scenario.scenario_favorites.count %> 
-              <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to scenario_scenario_favorites_path(scenario), method: :post do %>
-                ♡<%= scenario.scenario_favorites.count %>
-              <% end %>
-            </p>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+  <%= render 'index', scenarios: @scenarios %>
 </table>

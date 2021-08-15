@@ -2,3 +2,17 @@
   <h2>User info</h2>
   <%= render 'info', user: @user %>
 </div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          投稿一覧
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <%= render 'scenarios/index', scenarios: @scenarios %>
+  </table>
+</div>
