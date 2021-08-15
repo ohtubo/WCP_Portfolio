@@ -15,6 +15,8 @@
           作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
           <% if scenario.user == current_user %>
             <%= link_to "編集", edit_scenario_path(scenario) %>
+            |
+            <%= link_to "削除", scenario_path(scenario), method: :delete %>
           <% else %>
             <%= scenario.overview %>
           <% end %>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :scenarios, only: [:new, :create, :index, :show, :edit, :update] do
+  resources :scenarios, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resources :scenario_favorites, only: [:show, :create, :destroy]
     # get 'favorites' => 'scenario_favorites#favorites', as: 'favorites'
     resources :scenario_comments, only: [:create, :destroy]

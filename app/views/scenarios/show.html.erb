@@ -23,7 +23,7 @@
   <%= @scenario.overview %>
 </div>
 <div>
-  <%= attachment_image_tag @scenario, :scenario_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+  <%= attachment_image_tag @scenario, :scenario_image, :fill, 100, 100, fallback: "no_image.jpg",size: '100x100' %>
 </div>
 <div>
   <%= markdown(@scenario.content).html_safe %>

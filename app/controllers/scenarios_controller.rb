@@ -27,6 +27,12 @@ class ScenariosController < ApplicationController
     redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました"
   end
 
+  def destroy
+    scenario = Scenario.find(params[:id])
+    scenario.destroy
+    redirect_to scenarios_path
+  end
+
   def show
     @scenario = Scenario.find(params[:id])
     @user = @scenario.user
