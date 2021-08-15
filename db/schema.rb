@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_221610) do
+ActiveRecord::Schema.define(version: 2021_08_15_010303) do
 
   create_table "Scenarios", force: :cascade do |t|
     t.integer "user_id"
@@ -39,6 +39,26 @@ ActiveRecord::Schema.define(version: 2021_08_14_221610) do
     t.integer "scenario_id"
     t.integer "user_id"
     t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scenario_favorites", force: :cascade do |t|
+    t.integer "scenario_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scenario_tags", force: :cascade do |t|
+    t.integer "scenario_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

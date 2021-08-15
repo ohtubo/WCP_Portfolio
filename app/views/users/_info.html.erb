@@ -19,5 +19,6 @@
   <% end %>
 <% end %>
 </br>
+<%= link_to "いいねしたシナリオ", scenario_favorites_user_path(user) %></br>
 <%= link_to "フォロー", user_followings_path(user.id) %></br>
 <%= link_to "フォロワー", user_followers_path(user.id) %>

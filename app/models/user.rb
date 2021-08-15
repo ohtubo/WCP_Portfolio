@@ -27,6 +27,7 @@ class User < ApplicationRecord
   end
   
   has_many :Scenarios, dependent: :destroy
-  has_many :scenario_comment, dependent: :destroy
+  has_many :scenario_comments, dependent: :destroy
+  has_many :scenario_favorites, dependent: :destroy
   
 end

@@ -1,9 +1,24 @@
 class Scenario < ApplicationRecord
 
   attachment :scenario_image, destroy: false
-  
+
   belongs_to :user
   has_many :scenario_comment, dependent: :destroy
+  has_many :scenario_favorites, dependent: :destroy
+
+  has_many  :scenario_tags, dependent: :destroy
+  has_many  :tags, through: :scenario_tags
+
+  def favorited_by?(user)
+    scenario_favorites.where(user_id: user.id).exists?
+  end
+  
+  def save_tags(savescenario_tags)
+      savescenario_tags.each do |new_tag|
+        scenario_tag = Tag.find_or_create_by(tag: new_tag)
+        self.tags << scenario_tag
+      end
+  end
   
   enum categories: {
     "シナリオを選択": 0,
