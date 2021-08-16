@@ -5,7 +5,7 @@
     </tr>
   </thead>
   <tbody>
-    <%= form_with model:@scenario, local:true do |f| %>
+  <%= form_with model:@scenario, local:true do |f| %>
     <tr>
       <td style="width: 10%"><%= f.label "タイトル" %></td>
       <td><%= f.text_field :title %></td>
@@ -26,19 +26,19 @@
     </tr>
     <tr>
       <td><%= f.label "システムカテゴリ" %></td>
-      <td><%= f.select :system_category, Scenario.categories.keys %></td>
+      <td><%= f.select :system_category, Scenario.categories.keys, include_blank: "選択して下さい" %></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
       <td><%= f.label "シナリオタグ" %></td>
-      <td><%= f.text_field :tag_ids, class: "form-control", id:'tag_ids'%></td>
+      <td><%= f.text_field :tag_ids, value: @tag_list%></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
       <td><%= f.label "難易度" %></td>
-      <td><%= f.select :level, Scenario.levels.keys %></td>
+      <td><%= f.select :level, Scenario.levels.keys, include_blank: "選択して下さい" %></td>
       <td></td>
       <td></td>
     </tr>
@@ -47,9 +47,9 @@
         <%= f.label "推奨人数" %>
       </td>
       <td colspan="3">
-        <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys %>
+        <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, include_blank: "選択して下さい" %>
         ～
-        <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys %>
+        <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, include_blank: "選択して下さい" %>
       </td>
     </tr>
     <tr>
@@ -57,8 +57,8 @@
         <%= f.label "プレイ時間" %>
       </td>
       <td colspan="3">
-        <%= f.select :play_genre, Scenario.play_genres.keys %>
-        <%= f.select :play_time, Scenario.play_times.keys %>
+        <%= f.select :play_genre, Scenario.play_genres.keys, include_blank: "選択して下さい" %>
+        <%= f.select :play_time, Scenario.play_times.keys, include_blank: "選択して下さい" %>
       </td>
     </tr>
     <tr>
@@ -70,6 +70,6 @@
       <td></td>
       <td></td>
     </tr>
-  </tbody>
   <% end %>
+  </tbody>
 </table>

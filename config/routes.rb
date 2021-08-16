@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
-
-  get 'users/show'
-  get 'users/edit'
+  get 'searches/search'
+  # get 'users/show'
+  # get 'users/edit'
   devise_for :users
 
   resources :users, only: [:show, :edit, :update] do

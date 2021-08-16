@@ -14,10 +14,10 @@
         <%= link_to "シナリオ投稿", new_scenario_path %>
       </li>
       <li>
-        <%= link_to "シナリオ検索", root_path %>
+        <%= link_to "シナリオ検索", searches_search_path %>
       </li>
       <li>
-        <%= link_to "ランキング", scenarios_path %>
+        <%= link_to "ランキング", scenarios_path(sort: 0) %>
       </li>
       <li>
         <%= link_to "マイページ", user_path(current_user.id) %>

@@ -1,0 +1,35 @@
+<div>検索内容</div>
+<table>
+  <%= form_with url: scenarios_path(sort: 3), method: :get, local: true do |f| %>
+    <tr>
+      <td><%= f.label "システムカテゴリ" %></td>
+      <td><%= f.select :system_category, Scenario.categories.keys, include_blank: "選択して下さい" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label "難易度" %></td>
+      <td><%= f.select :level, Scenario.levels.keys, include_blank: "選択して下さい" %></td>
+    </tr>
+    <tr>
+      <td >
+        <%= f.label "推奨人数" %>
+      </td>
+      <td>
+        <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, include_blank: "選択して下さい" %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.label "プレイ時間" %>
+      </td>
+      <td>
+        <%= f.select :play_genre, Scenario.play_genres.keys, include_blank: "選択して下さい" %>
+        <%= f.select :play_time, Scenario.play_times.keys, include_blank: "選択して下さい" %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <%= f.submit '検索' %>
+  <% end %>
+</table>

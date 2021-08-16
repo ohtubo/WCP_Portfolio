@@ -4,7 +4,12 @@
       <th>
         検索結果一覧</br>
         検索ワード：<%= @scenarios.count %>件</br>
-        ストック順 ｜ 新着順 ｜ コメント順
+         <%= link_to "総合いいね順", scenarios_path(sort: 0) %>
+        ｜
+        <%= link_to "日間いいね順", scenarios_path(sort: 1) %>
+        ｜
+        <%= link_to "新着順", scenarios_path(sort: 2) %>
+        ｜
       </th>
       <th></th>
       <th></th>

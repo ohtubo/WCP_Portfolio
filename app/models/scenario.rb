@@ -5,6 +5,7 @@ class Scenario < ApplicationRecord
   belongs_to :user
   has_many :scenario_comments, dependent: :destroy
   has_many :scenario_favorites, dependent: :destroy
+  has_many :liked_users, through: :scenario_favorites, source: :user
 
   has_many  :scenario_tags, dependent: :destroy
   has_many  :tags, through: :scenario_tags
@@ -12,16 +13,29 @@ class Scenario < ApplicationRecord
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?
   end
-  
+
   def save_tags(savescenario_tags)
-      savescenario_tags.each do |new_tag|
-        scenario_tag = Tag.find_or_create_by(tag: new_tag)
-        self.tags << scenario_tag
-      end
+    current_tags = self.tags.pluck(:tag) unless self.tags.nil?
+    old_tags = current_tags - savescenario_tags
+    new_tags = savescenario_tags - current_tags
+
+    old_tags.each do |old_tag|
+      self.tags.delete Tag.find_by(tag: old_tag)
+    end
+
+    new_tags.each do |new_tag|
+      scenario_tag = Tag.find_or_create_by(tag: new_tag)
+      self.tags << scenario_tag
+    end
+
   end
-  
+
+  def self.search_for(system_category, level, upper_limit_count, play_genre, play_time)
+    @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
+    # @record = Scenario.where(['system_category ?', "#{system_category}"])
+  end
+
   enum categories: {
-    "シナリオを選択": 0,
     "クトゥルフ": 1,
     "パラノイア": 2,
     "インセイン": 3,
@@ -50,7 +64,6 @@ class Scenario < ApplicationRecord
   }
 
   enum levels: {
-    "難易度を選択": 0,
     "★": 1,
     "★★": 2,
     "★★★": 3,
@@ -59,7 +72,6 @@ class Scenario < ApplicationRecord
   }
 
   enum upper_limit_counts: {
-    "人数上限を選択": 0,
     "1人": 1,
     "2人": 2,
     "3人": 3,
@@ -73,7 +85,6 @@ class Scenario < ApplicationRecord
   }, _suffix: :upper_limit_counts
 
   enum lower_limit_counts: {
-    "人数下限を選択": 0,
     "1人": 1,
     "2人": 2,
     "3人": 3,
@@ -86,13 +97,11 @@ class Scenario < ApplicationRecord
   }, _suffix: :lower_limit_counts
 
     enum play_genres: {
-      "プレイジャンルを選択": 0,
       "オンライン": 1,
       "オフライン": 2,
     }
 
     enum play_times: {
-      "プレイ時間を選択": 0,
       "1時間": 1,
       "2時間": 2,
       "3時間": 3,

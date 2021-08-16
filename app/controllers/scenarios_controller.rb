@@ -19,12 +19,19 @@ class ScenariosController < ApplicationController
 
   def edit
     @scenario = Scenario.find(params[:id])
+    @tag_list =@scenario.tags.pluck(:tag).join(",")
   end
 
   def update
     @scenario = Scenario.find(params[:id])
-    @scenario.update(scenario_params)
-    redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました"
+    tag_list = params[:scenario][:tag_ids].split(',')
+    if @scenario.update(scenario_params)
+      @scenario.save_tags(tag_list)
+      redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました"
+    else
+      render 'edit'
+    end
+
   end
 
   def destroy
@@ -41,7 +48,17 @@ class ScenariosController < ApplicationController
   end
 
   def index
-    @scenarios = Scenario.all
+     case params[:sort]
+     when "0"
+       @scenarios = Scenario.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+     when "1"
+      # @scenarios= Scenario.find(ScenarioFavorite.group(:scenario_id).where(created_at: Time.current.all_day).order('count(scenario_id) desc').pluck(:scenario_id))
+       @scenarios = Scenario.includes(:liked_users).where(created_at: Time.current.all_day).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+     when "2"
+       @scenarios = Scenario.all.order(created_at: :desc)
+     when "3"
+       @scenarios = @records
+     end
   end
 
   private

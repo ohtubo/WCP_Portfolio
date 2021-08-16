@@ -16,7 +16,10 @@
 <!--作品紹介-->
 <h2><%= @scenario.title %></h2>
 <div>
-  <%= @scenario.system_category %></br>
+  <%= @scenario.system_category %>
+  <% @scenario.tags.each do |tag| %>
+    <%= tag.tag %>
+  <% end %></br>
   作者：<%= link_to @scenario.user.name, user_path(@scenario.user) %></br>
   難易度：<%= @scenario.level %>|人数：<%= @scenario.lower_limit_count %>～<%= @scenario.upper_limit_count %>
   |プレイ時間<%= @scenario.play_time %>[<%= @scenario.play_genre %>]</br>

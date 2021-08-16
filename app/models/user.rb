@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   attachment :icon_image, destroy: false
-  
+
   # 自分がフォローされる（被フォロー）側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   # 自分がフォローする（与フォロー）側の関係性
@@ -25,9 +25,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   has_many :scenarios, dependent: :destroy
   has_many :scenario_comments, dependent: :destroy
   has_many :scenario_favorites, dependent: :destroy
-  
+  has_many :liked_scenarios, through: :scenario_favorites, source: :scenario
 end
