@@ -10,7 +10,9 @@
           <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id}" %></br>
           <%= scenario.system_category %> |
           <% scenario.tags.each do |tag| %>
-             <%= tag.tag %>
+            <%= link_to scenarios_path('tag_id': tag.id, sort: 4) do %>
+              <%= tag.tag %>
+            <% end %>
           <% end %></br>
           作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
           <% if scenario.user == current_user %>

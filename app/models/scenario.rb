@@ -30,9 +30,24 @@ class Scenario < ApplicationRecord
 
   end
 
-  def self.search_for(system_category, level, upper_limit_count, play_genre, play_time)
-    @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
+  def self.search_for(search_select,system_category, level, upper_limit_count, play_genre, play_time)
+    # @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
+    if search_select == "AND"
+      @record = Scenario.where(['system_category LIKE ? AND level LIKE ? AND play_genre LIKE ?', "#{system_category}", "#{level}", "#{play_genre}"])
+    elsif search_select == "OR"
+      @record = Scenario.where(['system_category LIKE ? OR level LIKE ? OR play_genre LIKE ?', "#{system_category}", "#{level}", "#{play_genre}"])
+    end
     # @record = Scenario.where(['system_category ?', "#{system_category}"])
+  end
+
+  def self.search_for_category(search_category, search_word_1, search_word_2)
+    if search_category == "システムカテゴリ"
+      @record = Scenario.where(['system_category LIKE ?', "#{search_word_1}"])
+    elsif search_category == "難易度"
+      @record = Scenario.where(['level LIKE ?', "#{search_word_1}"])
+    elsif search_category == "プレイ時間"
+      @record = Scenario.where(['play_genre LIKE ? AND play_time LIKE ?', "#{search_word_1}", "#{search_word_2}"])
+    end
   end
 
   enum categories: {
@@ -110,6 +125,11 @@ class Scenario < ApplicationRecord
       "6時間": 6,
       "7時間": 7,
       "8時間以上": 8,
+    }
+
+      enum search_selects: {
+      "AND": 1,
+      "OR": 2,
     }
 
 end

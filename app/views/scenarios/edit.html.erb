@@ -1,3 +1,4 @@
+<%= form_with model:@scenario, local:true do |f| %>
 <table>
   <thead>
     <tr>
@@ -5,7 +6,6 @@
     </tr>
   </thead>
   <tbody>
-  <%= form_with model:@scenario, local:true do |f| %>
     <tr>
       <td style="width: 10%"><%= f.label "タイトル" %></td>
       <td><%= f.text_field :title %></td>
@@ -70,6 +70,6 @@
       <td></td>
       <td></td>
     </tr>
-  <% end %>
   </tbody>
 </table>
+<% end %>

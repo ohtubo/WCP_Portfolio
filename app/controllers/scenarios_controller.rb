@@ -48,16 +48,50 @@ class ScenariosController < ApplicationController
   end
 
   def index
+
      case params[:sort]
      when "0"
        @scenarios = Scenario.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
      when "1"
       # @scenarios= Scenario.find(ScenarioFavorite.group(:scenario_id).where(created_at: Time.current.all_day).order('count(scenario_id) desc').pluck(:scenario_id))
-       @scenarios = Scenario.includes(:liked_users).where(created_at: Time.current.all_day).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+       @scenarios = Scenario.includes(:liked_users).where(created_at: Time.current.all_week).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
      when "2"
        @scenarios = Scenario.all.order(created_at: :desc)
      when "3"
-       @scenarios = @records
+
+        @search_select = params[:search_select]
+        @system_category  = params[:system_category]
+        @level  = params[:level]
+        @upper_limit_count  = params[:upper_limit_count]
+        @play_genre  = params[:play_genre]
+        @play_time  = params[:play_time]
+
+        @records = Scenario.search_for(@search_select, @system_category, @level, @upper_limit_count, @play_genre, @play_time)
+        @scenarios = @records
+     when "4"
+        unless params["tag_id"].nil?
+          @tag = Tag.find(params["tag_id"])
+          @scenarios = @tag.scenarios
+        else
+          @scenarios = Scenario.all.order(created_at: :desc)
+        end
+     when "5"
+       @search_category = params[:search_category]
+       unless @search_category == "プレイ時間"
+        @search_word_1 = params[:search_word]
+        @search_word_2 = ""
+
+        @records = Scenario.search_for_category(@search_category, @search_word_1, @search_word_2)
+        @scenarios = @records
+       else
+        @search_word_1 = params[:search_word_1]
+        @search_word_2 = params[:search_word_2]
+        @records = Scenario.search_for_category(@search_category, @search_word_1, @search_word_2)
+        @scenarios = @records
+       end
+
+     else
+       @scenarios = Scenario.all.order(created_at: :desc)
      end
   end
 
@@ -66,5 +100,14 @@ class ScenariosController < ApplicationController
   def scenario_params
     params.require(:scenario).permit(:title, :overview, :scenario_image, :system_category, :level, :upper_limit_count, :lower_limit_count, :play_genre, :play_time, :content)
   end
+
+
+  # def search_for(value)
+  #   Scenario.where("name LIKE ?", "%#{value}%")
+  # end
+
+  # def genre_search_for(value)
+  #   Scenario.where(tag_id: value)
+  # end
 
 end
