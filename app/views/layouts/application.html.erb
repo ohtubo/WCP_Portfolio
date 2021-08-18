@@ -9,30 +9,43 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "シナリオ投稿", new_scenario_path %>
-      </li>
-      <li>
-        <%= link_to "シナリオ検索", searches_search_path %>
-      </li>
-      <li>
-        <%= link_to "ランキング", scenarios_path(sort: 0) %>
-      </li>
-      <li>
-        <%= link_to "マイページ", user_path(current_user.id) %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
+    <header>
+      <h1 class="heading">
+        <%= link_to "TRPGにはまろう", root_path %>
+      </h1>
+
+      </nav>
+        <ul class="nav-list">
+        <% if user_signed_in? %>
+          <li class="nav-list-item">
+            <%= link_to "シナリオ投稿", new_scenario_path %>
+          </li>
+          <li class="nav-list-item">
+            <%= link_to "シナリオ検索", searches_search_path %>
+          </li>
+          <li class="nav-list-item">
+            <%= link_to "ランキング", scenarios_path(sort: 0) %>
+          </li>
+          <li class="nav-list-item">
+            <%= link_to "マイページ", user_path(current_user.id) %>
+          </li>
+          <li class="nav-list-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li class="nav-list-item">
+            <%= link_to "新規登録", new_user_registration_path %>
+          </li>
+          <li class="nav-list-item">
+            <%= link_to "ログイン", new_user_session_path %>
+          </li>
+        <% end %>
+        </ul>
+      <nav>
+    </header>
     <%= yield %>
+    <!--<footer>-->
+    <!--  <p class="footer-text">©Othubo</p>-->
+    <!--</footer>-->
   </body>
 </html>

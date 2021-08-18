@@ -1,15 +1,19 @@
-<%= render 'subheader' %>
-
-<table>
-  <thead>
-    <tr>
-      <th>
-        検索結果一覧</br>
-        検索ワード：<%= @scenarios.count %>件</br>
-      </th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <%= render 'index', scenarios: @scenarios %>
-</table>
+<main class="main">
+  <%= render 'subheader' %>
+  
+  <div class="content">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="3" class="main-heading">
+            <p>検索結果一覧</p> 
+            <p>検索ワード：<%= @scenarios.count %>件</p>
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <%= render 'index', scenarios: @scenarios %>
+    </table>
+  </div>
+</main>

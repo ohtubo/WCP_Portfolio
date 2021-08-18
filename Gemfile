@@ -71,3 +71,8 @@ gem "refile-mini_magick"
 gem 'redcarpet', '~> 2.3.0'
 # シンタックスハイライトに対応させるためのgem
 gem 'coderay'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

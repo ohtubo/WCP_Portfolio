@@ -11,7 +11,7 @@
           <%= scenario.system_category %> |
           <% scenario.tags.each do |tag| %>
             <%= link_to scenarios_path('tag_id': tag.id, sort: 4) do %>
-              <%= tag.tag %>
+              <div class="tag"><%= tag.tag %></div>
             <% end %>
           <% end %></br>
           作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
