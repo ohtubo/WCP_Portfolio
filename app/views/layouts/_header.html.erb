@@ -1,0 +1,38 @@
+<header>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container">
+        <span class="navbar-header"><%= link_to "TRPGにはまろう!", root_path, class:"text-white" %></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "シナリオ投稿", new_scenario_path, class:"text-white" %>
+              </li>
+              <li>
+                <%= link_to "シナリオ検索", searches_search_path, class:"text-white" %>
+              </li>
+              <li>
+                <%= link_to "ランキング", scenarios_path(sort: 0), class:"text-white" %>
+              </li>
+              <li>
+                <%= link_to "マイページ", user_path(current_user.id), class:"text-white" %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-white" %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "新規登録", new_user_registration_path, class:"text-white" %>
+              </li>
+              <li>
+                <%= link_to "ログイン", new_user_session_path, class:"text-white" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+   </nav>
+</header>

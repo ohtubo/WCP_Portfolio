@@ -72,7 +72,14 @@ gem 'redcarpet', '~> 2.3.0'
 # シンタックスハイライトに対応させるためのgem
 gem 'coderay'
 
-# 
+#Bootstrapを導入
+gem 'bootstrap', '~> 4.5'
+#BootstrapがjQueryというライブラリに依存しているため、導入
+gem 'jquery-rails'
+#fontawesomeを利用するため、導入
+gem 'font-awesome-sass', '~> 5.13'
+
+#
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

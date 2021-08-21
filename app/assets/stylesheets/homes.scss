@@ -2,10 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#notice{
+  position:absolute; top:70px; left:0px; z-index: 2;
+}
+
 .main-visual {
   width: 100%; /* 横幅いっぱい */
   height: 300px; /* 高さ300px */
   background-image: image-url("DiCE.jpg");
+  position:absolute; top:70px; left:0px; z-index: 1;
   background-size: cover; /* 縦横比を維持したまま背景領域を埋め尽くす */
   background-position: center; /* 背景画像を中央に配置 */
 }
@@ -18,11 +23,11 @@
   padding-top: 105px; /* 上側の内側余白で垂直方向の位置を調整 */
 }
 
-.main-visual-name {
-  margin-top: 30px; /* 上側の外側の余白 */
-  color: #fff; /* 文字色を白に変更 */
-}
+// .main-visual-name {
+//   margin-top: 30px; /* 上側の外側の余白 */
+//   color: #fff; /* 文字色を白に変更 */
+// }
 
-.main-visual-text {
-  color: #fff; /* 文字色を白に変更 */
-}
+// .main-visual-text {
+//   color: #fff; /* 文字色を白に変更 */
+// }

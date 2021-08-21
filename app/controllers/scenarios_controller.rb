@@ -7,8 +7,10 @@ class ScenariosController < ApplicationController
   def create
     @scenario = Scenario.new(scenario_params)
     @scenario.user_id = current_user.id
-    tag_ids = params[:scenario][:tag_id_1]+","+params[:scenario][:tag_id_2]+","+params[:scenario][:tag_id_3]
-    tag_list = tag_ids.split(',')
+    tag_list = []
+    tag_list.push(params[:scenario][:tag_id_1] ,params[:scenario][:tag_id_2],params[:scenario][:tag_id_3])
+    # tag_ids = params[:scenario][:tag_id_1]+","+params[:scenario][:tag_id_2]+","+params[:scenario][:tag_id_3]
+    # tag_list = tag_ids.split(',')
     if @scenario.save
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: "シナリオ投稿が完了しました"
