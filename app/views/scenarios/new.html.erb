@@ -1,80 +1,83 @@
-<%= form_with model:@scenario, local:true do |f| %>
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2"><h2>シナリオを投稿</h2></th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td style="width: 10%"><%= f.label "タイトル" %></td>
-          <td><%= f.text_field :title %></td>
-          <td style="width: 10%"></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label "概要" %></td>
-          <td><%= f.text_area :overview , :size=>"60x15"%></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label "シナリオ画像" %></td>
-          <td><%= f.attachment_field :scenario_image %></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label "システムカテゴリ" %></td>
-          <td><%= f.select :system_category, Scenario.categories.keys, include_blank: "選択して下さい" %></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label "シナリオタグ" %></td>
-          <td>
-            <%= f.text_field :tag_id_1%> 
-            <%= f.text_field :tag_id_2%> 
-            <%= f.text_field :tag_id_3%>
-          </td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><%= f.label "難易度" %></td>
-          <td><%= f.select :level, Scenario.levels.keys, include_blank: "選択して下さい" %></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td >
-            <%= f.label "推奨人数" %>
-          </td>
-          <td colspan="3">
-            <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, include_blank: "選択して下さい" %>
-            ～
-            <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, include_blank: "選択して下さい" %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= f.label "プレイ時間" %>
-          </td>
-          <td colspan="3">
-            <%= f.select :play_genre, Scenario.play_genres.keys, include_blank: "選択して下さい" %>
-            <%= f.select :play_time, Scenario.play_times.keys, include_blank: "選択して下さい" %>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4"><%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x200" %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <%= f.submit "シナリオを投稿する"%>
-    </tbody>
-  </table>
-<% end %>
+<div class="container mt-5">
+  <div class="row">
+      <%= form_with model:@scenario, local:true do |f| %>
+        <table class="table table-condensed table-borderless">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="text-left">
+                  シナリオを投稿
+                </h2>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="bbd">
+                <!--class="bbd"-->
+                <td style="width: 20%"><%= f.label "タイトル" %></td>
+                <td><%= f.text_field :title, class:"form-control-scenarios",  size: 50 %></td>
+                <td style="width: 20%"></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "概要" %></td>
+                <td><%= f.text_area :overview , :size=>"80x5", class:"form-control-scenarios"%></td>
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "シナリオ画像" %></td>
+                <td><%= f.attachment_field :scenario_image %></td>
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "システムカテゴリ" %></td>
+                <td colspan="3">
+                  <%= f.select :system_category, Scenario.categories.keys, include_blank: "選択して下さい"%>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "シナリオタグ" %></td>
+                <td colspan="3">
+                  <%= f.text_field :tag_id_1, class:"form-control-scenarios"%>
+                  <%= f.text_field :tag_id_2, class:"form-control-scenarios"%>
+                  <%= f.text_field :tag_id_3, class:"form-control-scenarios"%>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "難易度" %></td>
+                <td><%= f.select :level, Scenario.levels.keys, include_blank: "選択して下さい" , class:"form-control-scenarios" %></td>
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td >
+                  <%= f.label "推奨人数" %>
+                </td>
+                <td colspan="3">
+                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                  ～
+                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td>
+                  <%= f.label "プレイ時間" %>
+                </td>
+                <td colspan="3">
+                  <%= f.select :play_genre, Scenario.play_genres.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                  <%= f.select :play_time, Scenario.play_times.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4"><%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%></td>
+              </tr>
+              <tr >
+                <td colspan="3" class="text-right">
+                  <%= f.submit "シナリオを投稿する" ,class:"btn btn-sm btn-success pt-1 pb-1 pl-3 pr-3"%>
+                </td>
+              </tr>
+
+          </tbody>
+        </table>
+      <% end %>
+  </div>
+</div>
+

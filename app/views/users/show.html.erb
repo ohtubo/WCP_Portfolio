@@ -1,18 +1,22 @@
-<div>
-  <h2>User info</h2>
-  <%= render 'info', user: @user %>
+<div class='container px-5 px-sm-0 mt-5'>
+    <div class='row'>
+      <div class='col-md-3'>
+          <%= render 'info', user: @user %>
+      </div>
+      <div class='col-md-8 offset-md-1'>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                投稿一覧
+              </th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <%= render 'scenarios/index', scenarios: @scenarios %>
+        </table>
+      </div>
+    </div>
 </div>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          投稿一覧
-        </th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <%= render 'scenarios/index', scenarios: @scenarios %>
-  </table>
-</div>
+

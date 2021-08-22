@@ -1,5 +1,9 @@
-<table>
-  <tr><%= attachment_image_tag(user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %></tr>
+<table class='table table-borderless'>
+  <tr>
+    <div class='container px-5'>
+      <%= attachment_image_tag(user, :icon_image, :fill, 150, 150, fallback: "no_image.jpg",size: '150x150') %>
+    </div>
+  </tr>
   <tr>
 	  <th><%= user.name %></th>
   </tr>
@@ -8,17 +12,42 @@
   </tr>
 </table>
 
-
-<% if current_user == user %>
-  <%= link_to 'プロフィール編集',edit_user_path(user),class: "edit_user_#{user.id}" %>
-<% else %>
-  <% if current_user.following?(user) %>
-    <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete %>
+<div class='row text-center'>
+  <% if current_user == user %>
+    <%= link_to 'プロフィール編集',edit_user_path(user),class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" %>
   <% else %>
-    <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+    <% if current_user.following?(user) %>
+      <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete,class: "btn btn-outline-secondary btn-block" %>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
+    <% end %>
   <% end %>
-<% end %>
-</br>
-<%= link_to "いいねしたシナリオ", scenario_favorites_user_path(user) %></br>
-<%= link_to "フォロー", user_followings_path(user.id) %></br>
-<%= link_to "フォロワー", user_followers_path(user.id) %>
+</div>
+<div class='row bbd4'></div>
+<div class='row'>
+  <%= link_to scenario_favorites_user_path(user),class: "btn btn-outline-secondary btn-block text-center" do %>
+     <%= @user.scenario_favorites.count %></br>
+     いいねしたシナリオ
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to user_path(current_user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+     <%= @user.scenarios.count %></br>
+     投稿シナリオ
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to  user_followings_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+  <%= @user.followings.count %></br>
+  フォロー
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to  user_followers_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+  <%= @user.followers.count %></br>
+  フォロワー
+  <% end %>
+</div>
