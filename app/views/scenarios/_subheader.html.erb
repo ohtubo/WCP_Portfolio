@@ -1,21 +1,36 @@
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 <script>
 $(function(){
-$('.sub_menu').hide();
-$('.main_menu').click(function(){
-  $('ul.sub_menu').slideUp();
-  $('.main_menu').removeClass('open');
-  if($('+ul.sub_menu',this).css('display') == 'none'){
-  $('+ul.sub_menu',this).slideDown();
-  $(this).addClass('open');
-  }
-});
+  $('.sub_menu').hide();
+  $('.sub_menu-two').hide();
+  $('.main_menu-two').click(function() {
+    $('.sub_menu-two').slideUp();
+    $('.main_menu-two').removeClass('open');
+    if($('.sub_menu-two').css('display') == 'none') {
+      // console.log('open');
+      $('.sub_menu-two').slideDown();
+      $('.main_menu-two').addClass('open');
+      return;
+    }
+  })
+  $('.main_menu').click(function(){
+      $('ul.sub_menu').slideUp();
+      $('.sub_menu-two').slideUp();
+      $('.main_menu').removeClass('open');
+      $('.main_menu-two').removeClass('open');
+      //+ul.sub_menu class[sub_menu]直後にあるulを参考にする
+      //css('display') cssの「display」内容がnoneの時実行
+    if($('+ul.sub_menu',this).css('display') == 'none'){
+      $('+ul.sub_menu',this).slideDown();
+      $(this).addClass('open');
+    }
+  });
 });
 </script>
 
 
 <div id="leftside-navigation">
-  <h1 class="text-center">Search</h1>
+  <h1 class="text-center title">Sear<%= link_to "c", searches_search_path %>h</h1>
   <nav>
   <ul id="menu">
     <li>
@@ -185,19 +200,21 @@ $('.main_menu').click(function(){
       </li>
       </ul>
     </li>
-    <li class="has-child"><div class="main_menu">プレイ時間</div>
+    <li class="has-child">
+      <div class="main_menu">プレイ時間</div>
       <ul class="sub_menu">
-      <li class="has-child"><div class="main_menu">オフライン</div>
-        <ul class="sub_menu">
-          <li><a href="#">1時間</a></li>
-          <li><a href="#">2時間</a></li>
-          <li><a href="#">3時間</a></li>
-          <li><a href="#">4時間</a></li>
-          <li><a href="#">5時間</a></li>
-          <li><a href="#">6時間</a></li>
-          <li><a href="#">7時間</a></li>
-          <li><a href="#">8時間以上</a></li>
-        </ul>
+        <li class="has-child">
+          <div class="main_menu-two">オフライン</div>
+          <ul class="sub_menu-two">
+            <li><a href="#">1時間</a></li>
+            <li><a href="#">2時間</a></li>
+            <li><a href="#">3時間</a></li>
+            <li><a href="#">4時間</a></li>
+            <li><a href="#">5時間</a></li>
+            <li><a href="#">6時間</a></li>
+            <li><a href="#">7時間</a></li>
+            <li><a href="#">8時間以上</a></li>
+          </ul>
       </li>
       <li class="has-child"><div class="main_menu">オンライン</div>
         <ul class="sub_menu">

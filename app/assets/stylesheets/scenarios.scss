@@ -8,6 +8,12 @@
     // padding: 25px 0;
 }
 
+.bbd12 {
+    border-bottom: 1px solid #DCDCDC;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
 .table-condensed > tbody > tr > td,{
   padding: 25px;  /* 5px の値を変更 */
 }
@@ -27,7 +33,7 @@
 #leftside-navigation{
   position: fixed;
   /*stickyで固定*/
-  position: -webkit-sticky;/*Safari*/
+//   position: -webkit-sticky;/*Safari*/
   position: sticky;
 
   top: 70px;
@@ -73,7 +79,7 @@ ul, li{
     color: #666;
     font-weight: bold;
     padding-top: 10px;
-    width: 300px;
+    width: 100%;
 }
 #leftside-navigation a {
     text-decoration: none;
@@ -82,12 +88,16 @@ ul, li{
 #leftside-navigation a:hover {
     color: #ffffff;
 }
+
 #menu {
     border-bottom-width: 1px;
     border-bottom-style: dashed;
     border-bottom-color: #CCC;
 }
-.main_menu{
+.main_menu,
+.main_menu-one,
+.main_menu-two
+{
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #f2f2f2;
@@ -99,35 +109,7 @@ ul, li{
     border-top-width: 1px;
     border-top-style: dashed;
     border-top-color: #CCC;
-    width: 280px;
-}
-.main_menu-one{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #f2f2f2;
-    font-weight: bold;
-    padding-left: 20px;
-    text-indent: 10;
-    display: block;
-    position: relative;
-    border-top-width: 1px;
-    border-top-style: dashed;
-    border-top-color: #CCC;
-    width: 280px;
-}
-.main_menu-two{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background-color: #f2f2f2;
-    font-weight: bold;
-    padding-left: 20px;
-    text-indent: 10;
-    display: block;
-    position: relative;
-    border-top-width: 1px;
-    border-top-style: dashed;
-    border-top-color: #CCC;
-    width: 280px;
+    width: 100%;
 }
 .main_menu::before {
     content: '';
@@ -160,7 +142,7 @@ ul, li{
     margin-top: -6px;
 }
 
-#menu .open::before {
+.open::before {
     -ms-transform: rotate(315deg);
     -webkit-transform: rotate(315deg);
     transform: rotate(315deg);
@@ -168,12 +150,12 @@ ul, li{
 }
 #menu .main_menu:hover ,
 .main_menu-one:hover,
-.main_menu-two:hover,#menu .open {
+.main_menu-two:hover,.open {
     background-color: #87aa58;
     color: #FFF;
 }
 #menu .main_menu:hover::before,
-.main_menu-two:hover::before ,#menu .open::before{
+.main_menu-two:hover::before ,.open::before{
     border-top: solid 2px #ffffff;
     border-right: solid 2px #ffffff;
 }

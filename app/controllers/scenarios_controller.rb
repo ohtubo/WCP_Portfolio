@@ -75,8 +75,15 @@ class ScenariosController < ApplicationController
        @scenarios = Scenario.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
      when "1"
       # @scenarios= Scenario.find(ScenarioFavorite.group(:scenario_id).where(created_at: Time.current.all_day).order('count(scenario_id) desc').pluck(:scenario_id))
-       @scenarios = Scenario.includes(:liked_users).where(created_at: Time.current.all_week).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
-       @scenarios = Scenario.scenario_favorites.
+      @scenarios = Scenario.includes(:liked_users).where(created_at: Time.current.all_week).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
+
+      #週刊いいね順
+      # @scenarios = ScenarioFavorite.where('created_at <= ? AND created_at >= ?', Time.zone.now, Time.zone.now - 1.weeks)
+      #                               .select('scenario_id, user_id, count(scenario_id) as scenarios_count')
+      #                               .group(:scenario_id)
+      #                               .order(scenarios_count: 'DESC')
+      #                               .scenarios
+
      when "2"
        @scenarios = Scenario.all.order(created_at: :desc)
      when "3"
