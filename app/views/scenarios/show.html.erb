@@ -75,11 +75,9 @@
       	  <th>
       	    <% unless current_user.nil? %>
         	    <% unless current_user.id == @user.id %>
-                <% if current_user.following?(@user) %>
-                  <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-outline-primary pt-1 pb-1 pl-3 pr-3" %>
-                <% else %>
-                  <%= link_to "フォローする", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-primary pt-1 pb-1 pl-3 pr-3" %>
-                <% end %>
+                <div id="follow_user_<%= user.id %>">
+                  <%= render 'follows/follow-btn', user: user %>
+                </div>
         	    <% end %>
       	    <% end %>
       	  </th>

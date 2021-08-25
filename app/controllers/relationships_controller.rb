@@ -2,12 +2,16 @@ class RelationshipsController < ApplicationController
 
   def create
     current_user.follow(params[:user_id])
-    redirect_to request.referer, notice: "フォローしました。"
+    @user = User.find(params[:user_id])
+    flash.now[:notice] = "フォローしました。"
+    # redirect_to request.referer, notice: "フォローしました。"
   end
 
   def destroy
     current_user.unfollow(params[:user_id])
-    redirect_to request.referer, notice: "フォローが解除されました。"
+    @user = User.find(params[:user_id])
+    flash.now[:notice] = "フォローが解除されました。"
+    # redirect_to request.referer, notice: "フォローが解除されました。"
   end
 
   def followings

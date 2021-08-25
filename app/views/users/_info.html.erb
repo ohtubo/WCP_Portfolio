@@ -12,16 +12,16 @@
   </tr>
 </table>
 
-<div class='row text-center'>
+<div class='row'>
   <% unless current_user.nil? %>
     <% if current_user == user %>
+    <div class="btn-block" >
       <%= link_to 'プロフィール編集',edit_user_path(user),class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" %>
+    </div>
     <% else %>
-      <% if current_user.following?(user) %>
-        <%= link_to "フォロー解除", user_relationships_path(user.id), method: :delete,class: "btn btn-outline-primary  btn-block" %>
-      <% else %>
-        <%= link_to "フォローする", user_relationships_path(user.id), method: :post,class: "btn btn-outline-primary  btn-block" %>
-      <% end %>
+      <div id="follow_user_<%= user.id %>" class="btn btn-block">
+        <%= render 'follows/follow-btn', user: user %>
+      </div>
     <% end %>
   <% end %>
 </div>
@@ -49,7 +49,10 @@
 
 <div class='row pt-3'>
   <%= link_to  user_followers_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
-  <%= @user.followers.count %></br>
+  <div id="followers_count">
+    <%= render 'follows/follow-count',user: @user %>
+  </div>
+
   フォロワー
   <% end %>
 </div>
