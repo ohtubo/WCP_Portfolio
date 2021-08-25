@@ -1,0 +1,19 @@
+コメント件数：<%= scenario.scenario_comments.count %>
+<% scenario.scenario_comments.each do |scenario_comment| %>
+  <div>
+  <%= attachment_image_tag(scenario_comment.user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '40x40') %>
+  <%= scenario_comment.user.name %>
+  [
+  <%= l scenario_comment.created_at, format: :short %>
+  ]
+  </div>
+  <div><%= scenario_comment.comment %></div>
+  <% if scenario_comment.user == current_user %>
+  <div class="text-right">
+    <%= link_to "削除", scenario_scenario_comment_path(scenario_comment.scenario, scenario_comment), method: :delete, remote: true,class:"btn btn-sm btn-danger" %>
+  </div>
+  <% end %>
+  <div class='row bbd12'></div>
+<% end %>
+
+<!--class="comment-delete"-->

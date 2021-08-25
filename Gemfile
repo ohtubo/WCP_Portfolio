@@ -78,7 +78,8 @@ gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
 #fontawesomeを利用するため、導入
 gem 'font-awesome-sass', '~> 5.13'
-
+#通知メッセージ
+gem "toastr-rails"
 #
 gem 'dotenv-rails'
 group :production do

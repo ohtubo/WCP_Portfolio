@@ -11,9 +11,6 @@
               <li>
                 <%= link_to "シナリオ投稿", new_scenario_path, class:"text-white" %>
               </li>
-              <!--<li>-->
-              <!--  <%#= link_to "シナリオ検索", searches_search_path, class:"text-white" %>-->
-              <!--</li>-->
               <li>
                 <%= link_to "ランキング", scenarios_path(sort: 2), class:"text-white" %>
               </li>
@@ -24,6 +21,9 @@
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-white" %>
               </li>
             <% else %>
+              <li>
+                <%= link_to "ランキング", scenarios_path(sort: 2), class:"text-white" %>
+              </li>
               <li>
                 <%= link_to "新規登録", new_user_registration_path, class:"text-white" %>
               </li>

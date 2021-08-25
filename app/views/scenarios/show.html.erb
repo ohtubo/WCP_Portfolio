@@ -1,20 +1,25 @@
-<div class="container px-5 px-sm-0 mt-5">
+<div id="scenario_<%= @scenario.id %>" class="container px-5 px-sm-0 mt-5 ">
   <div class="row">
     <div class="col-md-8">
-      <!--いいね-->
-        <% if @scenario.favorited_by?(current_user) %>
-          <p>
-            <%= link_to scenario_scenario_favorite_path(@scenario,@scenario_favorite ), method: :delete,class:"btn btn-outline-warning  pt-1 pb-1 pl-3 pr-3" do %>
-              いいね解除♥<%= @scenario.scenario_favorites.count  %>
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to scenario_scenario_favorites_path(@scenario), method: :post ,class:"btn btn-outline-warning  pt-1 pb-1 pl-3 pr-3" do %>
-              いいねする♡<%= @scenario.scenario_favorites.count %>
-            <% end %>
-          </p>
+
+      <div class="favorite-btn">
+        <!--いいね-->
+        <% unless current_user.nil? %>
+          <% if @scenario.favorited_by?(current_user) %>
+            <p>
+              <%= link_to scenario_scenario_favorite_path(@scenario,@scenario_favorite ), method: :delete,class:"btn btn-outline-warning  pt-1 pb-1 pl-3 pr-3" do %>
+                いいね解除♥<%= @scenario.scenario_favorites.count  %>
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to scenario_scenario_favorites_path(@scenario), method: :post ,class:"btn btn-outline-warning  pt-1 pb-1 pl-3 pr-3" do %>
+                いいねする♡<%= @scenario.scenario_favorites.count %>
+              <% end %>
+            </p>
+          <% end %>
         <% end %>
+      </div>
 
       <!--作品紹介-->
       <h2><%= @scenario.title %></h2>
@@ -68,12 +73,14 @@
         </tr>
         <tr>
       	  <th>
-      	    <% unless current_user.id == @user.id %>
-              <% if current_user.following?(@user) %>
-                <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-outline-primary   pt-1 pb-1 pl-3 pr-3" %>
-              <% else %>
-                <%= link_to "フォローする", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-primary   pt-1 pb-1 pl-3 pr-3" %>
-              <% end %>
+      	    <% unless current_user.nil? %>
+        	    <% unless current_user.id == @user.id %>
+                <% if current_user.following?(@user) %>
+                  <%= link_to "フォロー解除", user_relationships_path(@user.id), method: :delete,class:"btn btn-outline-primary pt-1 pb-1 pl-3 pr-3" %>
+                <% else %>
+                  <%= link_to "フォローする", user_relationships_path(@user.id), method: :post,class:"btn btn-outline-primary pt-1 pb-1 pl-3 pr-3" %>
+                <% end %>
+        	    <% end %>
       	    <% end %>
       	  </th>
         </tr>
@@ -83,25 +90,11 @@
   <div class='row bbd12'></div>
   <div class="row">
     <!--作品コメント一覧-->
-    <div class="comments">
-      <div class="ol-md-8">
-        コメント件数：<%= @scenario.scenario_comments.count %>
-        <% @scenario.scenario_comments.each do |scenario_comment| %>
-          <div>
-          <%= attachment_image_tag(scenario_comment.user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '40x40') %>
-          <%= scenario_comment.user.name %>
-          <%= scenario_comment.created_at %>
-          </div>
-          <div><%= scenario_comment.comment %></div>
-          <% if scenario_comment.user == current_user %>
-          <div class="comment-delete">
-            <%= link_to "削除", scenario_scenario_comment_path(scenario_comment.scenario, scenario_comment), method: :delete %>
-          </div>
-          <% end %>
-          <div class='row bbd12'></div>
-        <% end %>
-        </div>
+    <div class="list-comments">
+      <div class="col-md-8">
+        <%= render 'scenario_comments/index', scenario: @scenario %>
       </div>
+    </div>
   </div>
   <div class="row">
     <h2>コメントの投稿</h2>
@@ -109,7 +102,7 @@
   <div class="row">
     <!--作品コメント入力-->
     <div class="new-comment">
-      <%= form_with(model:[@scenario, @Scenario_comment], local: true) do |f| %>
+      <%= form_with(model:[@scenario, @Scenario_comment]) do |f| %>
         <%= f.text_area :comment,size: '80x5',placeholder: "コメントをここに" %></br>
         <div class="text-right"><%= f.submit "送信する" ,class: 'btn btn-sm btn-dark'%></div>
       <% end %>

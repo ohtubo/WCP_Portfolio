@@ -17,12 +17,18 @@
   @import 'font-awesome-sprockets';
   @import 'font-awesome';
 
+  @import "toastr";
+
 nav ul li a{
   display: block;
   text-decoration: none;
   color: #000;
   padding:15px;
   transition:all .3s;
+}
+
+.notice {
+  padding-top:100px;
 }
 
 // header {

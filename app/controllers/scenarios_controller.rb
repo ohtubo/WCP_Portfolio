@@ -1,4 +1,6 @@
 class ScenariosController < ApplicationController
+  before_action :authenticate_user!,except: [:index,:show]
+  before_action :ensure_correct_user, only: [:edit,:update]
 
   def new
     @scenario = Scenario.new
@@ -13,7 +15,7 @@ class ScenariosController < ApplicationController
     # tag_list = tag_ids.split(',')
     if @scenario.save
       @scenario.save_tags(tag_list)
-      redirect_to scenario_path(@scenario), notice: "シナリオ投稿が完了しました"
+      redirect_to scenario_path(@scenario), notice: "シナリオ投稿が完了しました。"
     else
       @scenarios = Scenario.all
       render 'index'
@@ -48,7 +50,7 @@ class ScenariosController < ApplicationController
     tag_list = tag_ids.split(',')
     if @scenario.update(scenario_params)
       @scenario.save_tags(tag_list)
-      redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました"
+      redirect_to scenario_path(@scenario), notice: "シナリオ編集が完了しました。"
     else
       render 'edit'
     end
@@ -130,13 +132,11 @@ class ScenariosController < ApplicationController
     params.require(:scenario).permit(:title, :overview, :scenario_image, :system_category, :level, :upper_limit_count, :lower_limit_count, :play_genre, :play_time, :content)
   end
 
-
-  # def search_for(value)
-  #   Scenario.where("name LIKE ?", "%#{value}%")
-  # end
-
-  # def genre_search_for(value)
-  #   Scenario.where(tag_id: value)
-  # end
+  def ensure_correct_user
+    @scenario = Scenario.find(params[:id])
+    unless @scenario.user == current_user
+      redirect_to scenario_path(@scenario), alert: "編集権限がありません。"
+    end
+  end
 
 end

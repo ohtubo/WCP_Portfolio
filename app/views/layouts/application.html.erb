@@ -13,7 +13,18 @@
   <body class="main-bg-color">
     <%= render 'layouts/header' %>
       <main>
-        <p id="notice"><%= notice %></p>
+        <% if flash.any? %>
+          <script type="text/javascript" class="notice">
+            toastr.options = {
+              "positionClass": "toast-bottom-right",
+            }
+            <% flash.each do |key, value| %>
+              <% key = "success" if key == "notice" %>
+              <% key = "error" if key == "alert" %>
+              toastr['<%= key %>']('<%= value %>');
+            <% end %>
+          </script>
+        <% end %>
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>
