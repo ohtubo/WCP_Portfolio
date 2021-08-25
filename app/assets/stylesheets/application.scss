@@ -16,7 +16,7 @@
   @import "bootstrap";
   @import 'font-awesome-sprockets';
   @import 'font-awesome';
-  
+
 nav ul li a{
   display: block;
   text-decoration: none;
@@ -94,3 +94,6 @@ nav ul li a{
     margin-top: 60px;
 }
 
+.main-bg-color{
+  background-color: #e8ecef;
+}

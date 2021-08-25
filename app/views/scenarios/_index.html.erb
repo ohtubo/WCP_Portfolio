@@ -1,43 +1,63 @@
-  <tbody>
-    <% scenarios.each do |scenario| %>
-      <tr>
-        <td>
-          <%= link_to scenario_path(scenario) do %>
-          <%= attachment_image_tag scenario, :scenario_image, :fill, 70, 90, fallback: "no_image.jpg",size: '70x90'%>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id}" %></br>
-          <%= scenario.system_category %> |
-          <% scenario.tags.each do |tag| %>
-            <%= link_to scenarios_path('tag_id': tag.id, sort: 4) do %>
-              <div class="tag"><%= tag.tag %></div>
+  <table class="table table-hover">
+    <tbody>
+      <% scenarios.each do |scenario| %>
+        <tr>
+          <td class="align-middle">
+            <%= link_to scenario_path(scenario) do %>
+              <%= attachment_image_tag scenario, :scenario_image, :fill, 90, 120, fallback: "no_image.jpg",size: '90x120'%>
             <% end %>
-          <% end %></br>
-          作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
-          <% if scenario.user == current_user %>
-            <%= link_to "編集", edit_scenario_path(scenario) %>
+          </td>
+          <td>
+            <h3>
+              <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id} text-dark" %></br>
+            </h3>
+            <div class="btn btn-sm btn-danger" ><%= scenario.system_category %> </div>
             |
-            <%= link_to "削除", scenario_path(scenario), method: :delete %>
-          <% else %>
-            <%= scenario.overview %>
-          <% end %>
-        </td>
-        <td>
-          <% if scenario.favorited_by?(current_user) %>
-            <p>
-              <%= link_to scenario_scenario_favorite_path(scenario,scenario ), method: :delete do %>
-                ♥<%= scenario.scenario_favorites.count %>
+            <% scenario.tags.each do |tag| %>
+              <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: 'text-decoration-none' do %>
+                <div class="tag btn btn-sm btn-warning "><%= tag.tag %></div>
               <% end %>
-            </p>
-            <% else %>
-            <p>
-              <%= link_to scenario_scenario_favorites_path(scenario), method: :post do %>
-                ♡<%= scenario.scenario_favorites.count %>
+            <% end %></br>
+            作者：<%= link_to scenario.user.name, user_path(scenario.user) %>
+            |
+            作成日：<%= l scenario.created_at, format: :short %></br>
+            <div>
+              難易度：<%= scenario.level %>
+              |
+              人数：<%= scenario.lower_limit_count %>～<%= scenario.upper_limit_count %>
+              |
+              時間：<%= scenario.play_time %>[<%= scenario.play_genre %>]
+            </div>
+              <% if scenario.user == current_user %>
+                <div class="text-right">
+                  <%= link_to "編集", edit_scenario_path(scenario),class:"btn btn-sm btn-success" %>
+                  |
+                  <%= link_to "削除", scenario_path(scenario), method: :delete,class:"btn btn-sm btn-danger" %>
+                </div>
+              <% else %>
+                <div class="text-break"><%= scenario.overview %></div>
               <% end %>
-            </p>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+          </td>
+          <td class="align-middle">
+           <% unless current_user.nil? %>
+             <% unless current_user == scenario.user %>
+                <% if scenario.favorited_by?(current_user) %>
+                  <h3>
+                    <%= link_to scenario_scenario_favorite_path(scenario,scenario ), method: :delete,class: 'text-decoration-none text-warning' do %>
+                      ♥<%= scenario.scenario_favorites.count %>
+                    <% end %>
+                  </h3>
+                  <% else %>
+                  <h3>
+                    <%= link_to scenario_scenario_favorites_path(scenario), method: :post,class: 'text-decoration-none text-secondary' do %>
+                      ♡<%= scenario.scenario_favorites.count %>
+                    <% end %>
+                  </h3>
+                <% end %>
+             <% end %>
+           <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>

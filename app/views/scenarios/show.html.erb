@@ -28,6 +28,7 @@
       </div>
       <div>
         作者：<%= link_to @scenario.user.name, user_path(@scenario.user) %>
+        更新日：<%= l @scenario.updated_at, format: :short %>
       </div>
       <div>
         難易度：<%= @scenario.level %>

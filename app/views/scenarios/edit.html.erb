@@ -34,7 +34,7 @@
               <tr class="bbd">
                 <td><%= f.label "システムカテゴリ" %></td>
                 <td colspan="3">
-                  <%= f.select :system_category, Scenario.categories.keys, include_blank: "選択して下さい"%>
+                  <%= f.select :system_category, Scenario.categories.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                 </td>
               </tr>
               <tr class="bbd">
@@ -47,7 +47,7 @@
               </tr>
               <tr class="bbd">
                 <td><%= f.label "難易度" %></td>
-                <td><%= f.select :level, Scenario.levels.keys, include_blank: "選択して下さい" , class:"form-control-scenarios" %></td>
+                <td><%= f.select :level, Scenario.levels.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%></td>
                 <td></td>
               </tr>
               <tr class="bbd">
@@ -55,9 +55,9 @@
                   <%= f.label "推奨人数" %>
                 </td>
                 <td colspan="3">
-                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                   ～
-                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                 </td>
               </tr>
               <tr class="bbd">
@@ -65,8 +65,8 @@
                   <%= f.label "プレイ時間" %>
                 </td>
                 <td colspan="3">
-                  <%= f.select :play_genre, Scenario.play_genres.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
-                  <%= f.select :play_time, Scenario.play_times.keys, include_blank: "選択して下さい", class:"form-control-scenarios" %>
+                  <%= f.select :play_genre, Scenario.play_genres.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                  <%= f.select :play_time, Scenario.play_times.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                 </td>
               </tr>
               <tr>

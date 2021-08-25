@@ -33,13 +33,13 @@
 #leftside-navigation{
   position: fixed;
   /*stickyで固定*/
-//   position: -webkit-sticky;/*Safari*/
+  position: -webkit-sticky;/*Safari*/
   position: sticky;
 
   top: 70px;
   left: 0px;
   // width: 150px;
-  height: 100vh;
+  height: 70vh;
   background: lightgray;
 
   /* 縦方向のスクロールバーを表示 */

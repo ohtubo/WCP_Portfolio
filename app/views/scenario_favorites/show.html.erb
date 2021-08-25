@@ -1,32 +1,11 @@
-<div>
-  <%#= render 'users/info', user: @user %>
-</div>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>いいねしたシナリオ</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @scenarios.each do |scenario| %>
-        <tr>
-          <td>
-            <%= link_to scenario_path(scenario) do %>
-            <%= attachment_image_tag scenario, :scenario_image, :fill, 70, 90, fallback: "no_image.jpg" %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id}" %></br>
-            <%= scenario.system_category %></br>
-            作者：<%= link_to scenario.user.name, user_path(scenario.user) %>　更新日：<%= scenario.created_at %></br>
-            <%= scenario.overview %>
-          </td>
-          <td></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class='container px-5 px-sm-0 mt-5'>
+    <div class='row'>
+      <div class='col-md-3'>
+          <%= render 'info', user: @user %>
+      </div>
+      <div class='col-md-8 offset-md-1'>
+      <h2>いいねしたシナリオ一覧</h2>
+      <%= render 'scenarios/index', scenarios: @scenarios %>
+      </div>
+    </div>
 </div>

@@ -4,18 +4,8 @@
           <%= render 'info', user: @user %>
       </div>
       <div class='col-md-8 offset-md-1'>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                投稿一覧
-              </th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <%= render 'scenarios/index', scenarios: @scenarios %>
-        </table>
+      <h2>投稿一覧</h2>
+      <%= render 'scenarios/index', scenarios: @scenarios %>
       </div>
     </div>
 </div>
