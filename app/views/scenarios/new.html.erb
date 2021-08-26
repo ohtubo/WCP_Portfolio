@@ -1,6 +1,7 @@
 <div class="container mt-5">
   <div class="row">
       <%= form_with model:@scenario, local:true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
         <table class="table table-condensed table-borderless">
           <thead>
             <tr>

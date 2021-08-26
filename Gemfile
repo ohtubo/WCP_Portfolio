@@ -80,7 +80,19 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 #通知メッセージ
 gem "toastr-rails"
-#
+#エラーメッセージ日本語化
+gem 'rails-i18n'
+
+group :test do
+  gem 'capybara', '>= 2.15'
+  #Rspecテスト機能導入
+  gem 'rspec-rails'
+  #テストデータの生成
+  gem 'factory_bot_rails'
+  #ランダムな値生成
+  gem 'faker'
+end
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

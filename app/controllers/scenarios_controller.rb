@@ -17,26 +17,12 @@ class ScenariosController < ApplicationController
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: "シナリオ投稿が完了しました。"
     else
-      @scenarios = Scenario.all
-      render 'index'
+      render 'new'
     end
   end
 
   def edit
     @scenario = Scenario.find(params[:id])
-    # @tag_list =@scenario.tags.pluck(:tag).join(",")
-    # count = 1
-    # @scenario.tags.pluck(:tag).each do |tag|
-    #   case count
-    #   when "1"
-    #     @tag_list_1 = 1
-    #   when "2"
-    #     @tag_list_2 = 2
-    #   when "3"
-    #     @tag_list_3 = 3
-    #   end
-    #   count += 1
-    # end
     @tag_list_1 = @scenario.tags.limit(1).pluck(:tag)
     @tag_list_2 = @scenario.tags.limit(1).offset(1).pluck(:tag)
     @tag_list_3 = @scenario.tags.limit(1).offset(2).pluck(:tag)

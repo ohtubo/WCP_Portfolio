@@ -2,7 +2,7 @@
    <% unless current_user == scenario.user %>
       <% if scenario.favorited_by?(current_user) %>
         <h3>
-          <%= link_to scenario_scenario_favorite_path(scenario,scenario ), method: :delete, remote: true,class: 'text-decoration-none text-warning' do %>
+          <%= link_to scenario_scenario_favorites_path(scenario), method: :delete, remote: true,class: 'text-decoration-none text-warning' do %>
             ♥<%= scenario.scenario_favorites.count %>
           <% end %>
         </h3>

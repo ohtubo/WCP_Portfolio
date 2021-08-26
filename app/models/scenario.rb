@@ -10,6 +10,16 @@ class Scenario < ApplicationRecord
   has_many  :scenario_tags, dependent: :destroy
   has_many  :tags, through: :scenario_tags
 
+	validates :title, presence: true, uniqueness: true
+	validates :overview, presence: true, length: {maximum: 250}
+	validates :system_category, presence: true
+	validates :level, presence: true
+	validates :upper_limit_count, presence: true
+	validates :lower_limit_count, presence: true
+	validates :play_genre, presence: true
+	validates :play_time, presence: true
+	validates :content, presence: true, length: {maximum: 5000}
+
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?
   end

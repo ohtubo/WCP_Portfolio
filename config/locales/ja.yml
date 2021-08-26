@@ -3,3 +3,16 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%Y年 %m月 %d日"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "空になっています。入力してください。"
+            self_introduction:
+              blank: "空になっています。入力してください。"
+    attributes:
+      user:
+        name: "ユーザーネーム"
+        self_introduction: "自己紹介"

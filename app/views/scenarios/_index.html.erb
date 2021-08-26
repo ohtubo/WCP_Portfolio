@@ -38,8 +38,8 @@
                 <div class="text-break"><%= scenario.overview %></div>
               <% end %>
           </td>
-          <td id="scenario_<%= scenario.id %>" class=" align-middle">
-            <%= render 'scenario_favorites/favorite-btn', scenario: scenario %>
+          <td id="scenario_favorite_index_<%= scenario.id %>" class=" align-middle">
+            <%= render 'scenario_favorites/favorite-btn-index', scenario: scenario %>
           </td>
         </tr>
       <% end %>

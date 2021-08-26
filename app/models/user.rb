@@ -14,6 +14,10 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
+
+  validates :name, presence: true, length: {maximum: 20, minimum: 2}, uniqueness: true
+  validates :self_introduction, length: {maximum: 150}
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

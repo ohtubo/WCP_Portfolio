@@ -42,6 +42,12 @@
   height: 70vh;
   background: lightgray;
 
+span {
+width:100px;
+}
+
+
+// ドロップダウンのフレーム------------------
   /* 縦方向のスクロールバーを表示 */
   overflow-y: scroll;
 
@@ -64,7 +70,7 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-// ドロップダウンメニュー
+// ドロップダウンメニュー----------------------------------------------------
 ul, li{
     margin: 0px;
     padding: 0px;
@@ -85,8 +91,13 @@ ul, li{
     text-decoration: none;
     color: #666;
 }
+
 #leftside-navigation a:hover {
     color: #ffffff;
+}
+
+#leftside-navigation span > a:hover {
+    color: #dcd6d9;
 }
 
 #menu {
@@ -197,3 +208,6 @@ ul, li{
 .third_menu li a::before{
     margin-left: 65px;
 }
+// -------------------------------------------------------
+
+
