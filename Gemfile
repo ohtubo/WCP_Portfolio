@@ -82,6 +82,8 @@ gem 'font-awesome-sass', '~> 5.13'
 gem "toastr-rails"
 #エラーメッセージ日本語化
 gem 'rails-i18n'
+#かみなり(ページング)実装
+gem 'kaminari'
 
 group :test do
   gem 'capybara', '>= 2.15'

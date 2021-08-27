@@ -11,10 +11,13 @@
         </p>
       </div>
       <!--<div class="main-bg-color">-->
-        <div class="container pt-3">
+        <div class="container py-3">
           <div class="row">
             <h2>新着シナリオ</h2>
             <%= render 'scenarios/index', scenarios: @scenarios %>
+          </div>
+          <div class="d-flex justify-content-center">
+             <%= paginate(@scenarios) %>
           </div>
         </div>
       <!--</div>-->

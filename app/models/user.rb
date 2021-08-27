@@ -14,6 +14,10 @@ class User < ApplicationRecord
   # 与フォロー関係を通じて参照→自分がフォローしている人
   has_many :followings, through: :relationships, source: :followed
 
+  has_many :scenarios, dependent: :destroy
+  has_many :scenario_comments, dependent: :destroy
+  has_many :scenario_favorites, dependent: :destroy
+  has_many :liked_scenarios, through: :scenario_favorites, source: :scenario
 
   validates :name, presence: true, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :self_introduction, length: {maximum: 150}
@@ -30,8 +34,4 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  has_many :scenarios, dependent: :destroy
-  has_many :scenario_comments, dependent: :destroy
-  has_many :scenario_favorites, dependent: :destroy
-  has_many :liked_scenarios, through: :scenario_favorites, source: :scenario
 end

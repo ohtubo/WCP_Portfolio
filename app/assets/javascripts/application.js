@@ -19,3 +19,4 @@
 //= require turbolinks
 //= require toastr
 //= require_tree .
+

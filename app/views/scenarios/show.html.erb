@@ -16,7 +16,9 @@
       <!--作品紹介-->
       <h2><%= @scenario.title %></h2>
       <div>
-        <div class="btn btn-sm btn-danger" ><%= @scenario.system_category%></div>
+        <%= link_to scenarios_path(search_category: "システムカテゴリ",search_word: @scenario.system_category ,sort: 5),class: 'text-decoration-none' do %>
+          <div class="btn btn-sm btn-danger" ><%= @scenario.system_category %> </div>
+        <% end %>
         <% @scenario.tags.each do |tag| %>
           <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: 'text-decoration-none' do %>
             <div class=" btn btn-sm btn-warning "><%= tag.tag %></div>

@@ -10,7 +10,7 @@ class Scenario < ApplicationRecord
   has_many  :scenario_tags, dependent: :destroy
   has_many  :tags, through: :scenario_tags
 
-	validates :title, presence: true, uniqueness: true
+	validates :title, presence: true, length: {maximum: 30}, uniqueness: true
 	validates :overview, presence: true, length: {maximum: 250}
 	validates :system_category, presence: true
 	validates :level, presence: true
@@ -108,6 +108,8 @@ class Scenario < ApplicationRecord
     "9人": 9,
     "上限なし": 10
   }, _suffix: :upper_limit_counts
+  
+  '#{:upper_limit_counts.to_i]人'
 
   enum lower_limit_counts: {
     "1人": 1,

@@ -12,7 +12,7 @@
                 <%= link_to "シナリオ投稿", new_scenario_path, class:"text-white text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "ランキング", scenarios_path(sort: 2), class:"text-white text-decoration-none"  %>
+                <%= link_to "ランキング", scenarios_path(sort: 0), class:"text-white text-decoration-none"  %>
               </li>
               <li>
                 <%= link_to "マイページ", user_path(current_user.id), class:"text-white text-decoration-none" %>
@@ -22,7 +22,7 @@
               </li>
             <% else %>
               <li>
-                <%= link_to "ランキング", scenarios_path(sort: 2), class:"text-white" %>
+                <%= link_to "ランキング", scenarios_path(sort: 0), class:"text-white" %>
               </li>
               <li>
                 <%= link_to "新規登録", new_user_registration_path, class:"text-white" %>

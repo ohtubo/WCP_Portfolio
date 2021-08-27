@@ -7,9 +7,18 @@
     </div>
     <div class='col-md-7 col-lg-8'>
       <h3>検索結果一覧</h3>
-      <p>検索ワード：<%= @scenarios.count %>件</p>
+      <p>表示数：<%= @scenarios_count.count %>件</p>
       <%= render 'index', scenarios: @scenarios %>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-5 col-lg-4"></div>
+    <div class="col-md-7 col-lg-8">
+      <div class="d-flex justify-content-center">
+         <%= paginate(@scenarios) %>
+      </div>
+    </div>
+  </div>
 </div>
+
 
