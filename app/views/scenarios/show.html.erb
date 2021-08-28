@@ -95,7 +95,13 @@
     <!--作品コメント入力-->
     <div class="new-comment">
       <%= form_with(model:[@scenario, @Scenario_comment]) do |f| %>
-        <%= f.text_area :comment,size: '80x5',placeholder: "コメントをここに" %></br>
+
+      <!------エラーメッセージの表示を追加-------------------------------------------------->
+      <!--  <div id="error_comment_<%#= @Scenario_comment.id %>">-->
+      <!--    <%#= render 'scenario_comments/error', error_comment: @error_comment %>-->
+      <!--  </div>-->
+      <!------------------------------------------------------------------------------>
+      <%= f.text_area :comment,size: '80x5',placeholder: "コメントをここに" %></br>
         <div class="text-right"><%= f.submit "送信する" ,class: 'btn btn-sm btn-dark'%></div>
       <% end %>
     </div>

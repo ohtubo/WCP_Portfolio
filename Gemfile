@@ -84,6 +84,9 @@ gem "toastr-rails"
 gem 'rails-i18n'
 #かみなり(ページング)実装
 gem 'kaminari'
+#構文チェック
+gem 'rubocop', require:false
+gem 'rubocop-rails', require:false
 
 group :test do
   gem 'capybara', '>= 2.15'

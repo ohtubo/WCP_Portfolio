@@ -3,7 +3,12 @@ class ScenarioCommentsController < ApplicationController
     @scenario = Scenario.find(params[:scenario_id])
     comment = current_user.scenario_comments.new(scenario_comment_params)
     comment.scenario_id = @scenario.id
-    comment.save
+    unless comment.save
+      @user = @scenario.user
+      @Scenario_comment = ScenarioComment.new
+      @error_comment = comment
+      render 'scenarios/show'
+    end
     # redirect_to scenario_path(scenario)
   end
 

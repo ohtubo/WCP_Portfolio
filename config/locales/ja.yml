@@ -16,3 +16,17 @@ ja:
       user:
         name: "ユーザーネーム"
         self_introduction: "自己紹介"
+    attributes:
+      scenario:
+        title: "タイトル"
+        overview: "概要"
+        system_category: "システムカテゴリ"
+        level: "難易度"
+        lower_limit_count: "推奨人数下限"
+        upper_limit_count: "推奨人数上限"
+        play_genre: "プレイ時間[ジャンル]"
+        play_time: "プレイ時間[時間]"
+        content: "シナリオ内容"
+    attributes:
+      scenariocomment:
+        comment: "コメント"
