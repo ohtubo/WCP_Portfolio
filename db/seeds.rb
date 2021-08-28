@@ -51,7 +51,7 @@ CSVROW_CONTENT = 8
 CSVROW_LEVEL = 9
 CSVROW_CREATED_AT = 10
 CSVROW_UPDATED_AT = 11
-num = 1
+num = 0
 #/tag/-------------------------------------------------------
 CSVROW_TAG = 0
 
@@ -60,8 +60,10 @@ CSVROW_SCENARIO_ID = 0
 CSVROW_TAG_ID = 1
 
 CSV.foreach('db/csv/scenario.csv', headers: true) do |row|
-  num = 0 if num > 4
 
+  if num > 4
+    num = 0
+  end
   Scenario.create(
     user_id: row[CSVROW_USERID],
     title: row[CSVROW_TITLE],
@@ -77,6 +79,7 @@ CSV.foreach('db/csv/scenario.csv', headers: true) do |row|
     created_at: row[CSVROW_CREATED_AT],
     updated_at: row[CSVROW_UPDATED_AT]
   )
+
   num += 1
 end
 
