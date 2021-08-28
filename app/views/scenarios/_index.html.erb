@@ -13,13 +13,13 @@
               <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id} text-dark" %></br>
             </h3>
             <%= link_to scenarios_path(search_category: "システムカテゴリ",search_word: scenario.system_category ,sort: 5),class: 'text-decoration-none' do %>
-              <div class="btn btn-sm btn-danger" ><%= scenario.system_category %> </div>
+              <div class="btn btn-sm btn-danger fas fa-star" ><%= scenario.system_category %> </div>
             <% end %>
 
             |
             <% scenario.tags.each do |tag| %>
-              <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: 'text-decoration-none' do %>
-                <div class="tag btn btn-sm btn-warning "><%= tag.tag %></div>
+              <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: ' text-decoration-none' do %>
+                <div class="tag btn btn-sm btn-warning fas fa-tag"><%= tag.tag %></div>
               <% end %>
             <% end %></br>
             作者：<%= link_to scenario.user.name, user_path(scenario.user) %>

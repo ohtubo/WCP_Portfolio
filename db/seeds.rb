@@ -37,30 +37,58 @@ User.create!(
 require 'csv'
 
 # 使用するデータ（CSVファイルの列）を指定
+# /scenario/-------------------------------------------
 CSVROW_USERID = 0
 CSVROW_TITLE = 1
 CSVROW_OVERVIEW = 2
-CSVROW_SCENARIO_IMAGE = 3
-CSVROW_SYSTEM_CATEGORY = 4
-CSVROW_UPPER_LIMIT_COUNT = 5
-CSVROW_LOWER_LIMIT_COUNT = 6
-CSVROW_PLAY_GENRE = 7
+# CSVROW_SCENARIO_IMAGE = 3
+CSVROW_SYSTEM_CATEGORY = 3
+CSVROW_UPPER_LIMIT_COUNT = 4
+CSVROW_LOWER_LIMIT_COUNT = 5
+CSVROW_PLAY_GENRE = 6
+CSVROW_PLAY_TIME = 7
 CSVROW_CONTENT = 8
 CSVROW_LEVEL = 9
+CSVROW_CREATED_AT = 10
+CSVROW_UPDATED_AT = 11
+num = 1
+#/tag/-------------------------------------------------------
+CSVROW_TAG = 0
 
-CSV.foreach('db/csv/scenario.CSV', encoding: "Shift_JIS:UTF-8") do |row|
-  user_id = row[CSVROW_USERID]
-  title = row[CSVROW_TITLE]
-  overview = row[CSVROW_OVERVIEW]
-  # scenario_image = row[CSVROW_SCENARIO_IMAGE]  scenario_image: scenario_image, 
-  system_category = row[CSVROW_SYSTEM_CATEGORY]
-  upper_limit_count = row[CSVROW_UPPER_LIMIT_COUNT]
-  lower_limit_count = row[CSVROW_LOWER_LIMIT_COUNT]
-  play_genre = row[CSVROW_PLAY_GENRE]
-  play_time = row[CSVROW_PLAY_TIME]
-  content = row[CSVROW_CONTENT]
-  level = row[CSVROW_LEVEL]
-  Scenario.find_or_create_by(user_id: user_id,title: title, overview: overview,
-                            system_category: system_category, level: level, upper_limit_count: upper_limit_count,
-                            lower_limit_count: lower_limit_count, play_genre: play_genre, play_time: play_time, content: play_time)
+#/scenario_tags/-------------------------------------------------------
+CSVROW_SCENARIO_ID = 0
+CSVROW_TAG_ID = 1
+
+CSV.foreach('db/csv/scenario.csv', headers: true) do |row|
+  num = 0 if num > 4
+
+  Scenario.create(
+    user_id: row[CSVROW_USERID],
+    title: row[CSVROW_TITLE],
+    overview: row[CSVROW_OVERVIEW],
+    system_category: row[CSVROW_SYSTEM_CATEGORY],
+    scenario_image: File.open("./app/assets/images/scenario_#{num}.jpg"),
+    upper_limit_count: row[CSVROW_UPPER_LIMIT_COUNT],
+    lower_limit_count: row[CSVROW_LOWER_LIMIT_COUNT],
+    play_genre: row[CSVROW_PLAY_GENRE],
+    play_time: row[CSVROW_PLAY_TIME],
+    content: row[CSVROW_CONTENT],
+    level: row[CSVROW_LEVEL],
+    created_at: row[CSVROW_CREATED_AT],
+    updated_at: row[CSVROW_UPDATED_AT]
+  )
+  num += 1
+end
+
+CSV.foreach('db/csv/tag.csv', headers: true) do |row|
+  Tag.create(
+    tag: row[CSVROW_TAG]
+  )
+end
+
+CSV.foreach('db/csv/scenario_tags.csv', headers: true) do |row|
+  ScenarioTag.create(
+    scenario_id: row[CSVROW_SCENARIO_ID],
+    tag_id: row[CSVROW_TAG_ID]
+  )
 end

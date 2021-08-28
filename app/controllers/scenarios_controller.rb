@@ -113,7 +113,7 @@ class ScenariosController < ApplicationController
 
     @scenarios_count = @scenarios
     # いいねのsotoが配列の為kaminari の paginate_array メソッド使用
-    @scenarios = Kaminari.paginate_array(@scenarios).page(params[:page]).per(3)
+    @scenarios = Kaminari.paginate_array(@scenarios).page(params[:page]).per(10)
   end
 
   private

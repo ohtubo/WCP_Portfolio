@@ -56,9 +56,9 @@
                   <%= f.label "推奨人数" %>
                 </td>
                 <td colspan="3">
-                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                   ～
-                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
                 </td>
               </tr>
               <tr class="bbd">

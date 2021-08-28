@@ -1,9 +1,0 @@
-<% if error_comment.present? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% error_comment.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>

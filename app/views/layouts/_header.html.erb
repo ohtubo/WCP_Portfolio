@@ -1,7 +1,11 @@
 <header>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+   <nav class="navbar navbar-expand-lg navbar-dark header-bg">
        <div class="container">
-        <span class="navbar-header"><%= link_to "TRPGにはまろう!", root_path, class:"text-white" %></span>
+        <span class="navbar-header">
+          <%= link_to root_path do %>
+            <%= image_tag 'Title.jpg' ,size: '200x85'%>
+          <% end %>
+        </span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,26 +13,26 @@
           <ul class=" gnavi navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li>
-                <%= link_to "シナリオ投稿", new_scenario_path, class:"text-white text-decoration-none" %>
+                <%= link_to "シナリオ投稿", new_scenario_path, class:"fas fa-plus text-white text-decoration-none fas fa-file-plus" %>
               </li>
               <li>
-                <%= link_to "ランキング", scenarios_path(sort: 0), class:"text-white text-decoration-none"  %>
+                <%= link_to "ランキング", scenarios_path(sort: 0), class:"fas fa-crown text-white text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "マイページ", user_path(current_user.id), class:"text-white text-decoration-none" %>
+                <%= link_to "マイページ", user_path(current_user.id), class:"fas fa-user-alt text-white text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"text-white text-decoration-none" %>
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt text-white text-decoration-none" %>
               </li>
             <% else %>
               <li>
-                <%= link_to "ランキング", scenarios_path(sort: 0), class:"text-white" %>
+                <%= link_to "ランキング", scenarios_path(sort: 0), class:"fas fa-crown text-white text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "新規登録", new_user_registration_path, class:"text-white" %>
+                <%= link_to "新規登録", new_user_registration_path, class:"fas fa-user-plus text-white text-decoration-none" %>
               </li>
               <li>
-                <%= link_to "ログイン", new_user_session_path, class:"text-white" %>
+                <%= link_to "ログイン", new_user_session_path, class:"fas fa-sign-in-alt text-white text-decoration-none" %>
               </li>
             <% end %>
           </ul>

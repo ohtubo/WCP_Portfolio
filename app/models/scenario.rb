@@ -18,6 +18,25 @@ class Scenario < ApplicationRecord
   validates :play_genre, presence: true
   validates :play_time, presence: true
   validates :content, presence: true, length: { maximum: 5000 }
+  validate  :limit_counts
+
+  # [:AAA]シンボル型
+
+  # バリデーションメソッド
+  def limit_counts
+    # test0 = 1 # => 1 integer型
+    # test1 = "1" # => "1" string型
+    # test2 = :hoge # => :hoge synbol型
+    # byebug
+    # 独自のバリデーションの条件 lower_limit_count
+    # enumの値を見たい場合は下記参照
+    if Scenario.lower_limit_counts[lower_limit_count] > Scenario.upper_limit_counts[upper_limit_count]
+      # byebug
+      errors.add(:lower_limit_count, "は[上限値]より小さい値を入力してください") # エラーメッセージ
+      errors.add(:upper_limit_count, "は[下限値]より大きい値を入力してください") # エラーメッセージ
+    end
+  end
+
 
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?

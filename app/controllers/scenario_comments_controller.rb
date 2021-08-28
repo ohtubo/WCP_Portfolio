@@ -1,14 +1,9 @@
 class ScenarioCommentsController < ApplicationController
   def create
     @scenario = Scenario.find(params[:scenario_id])
-    comment = current_user.scenario_comments.new(scenario_comment_params)
-    comment.scenario_id = @scenario.id
-    unless comment.save
-      @user = @scenario.user
-      @Scenario_comment = ScenarioComment.new
-      @error_comment = comment
-      render 'scenarios/show'
-    end
+    @Scenario_comment = current_user.scenario_comments.new(scenario_comment_params)
+    @Scenario_comment.scenario_id = @scenario.id
+    render 'error' unless @Scenario_comment.save
     # redirect_to scenario_path(scenario)
   end
 
