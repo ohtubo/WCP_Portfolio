@@ -35,7 +35,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
         expect(login_link).to match(/ログイン/i)
       end
     end
-    
+
     context 'リンクの内容を確認' do
       subject { current_path }
 

@@ -2,28 +2,28 @@ require 'rails_helper'
 
 describe 'Userモデルのテスト' do
   describe 'バリデーションのテスト' do
-    #[.valid?]バリデーションが走った処理の後にエラーが残っているか
+    # [.valid?]バリデーションが走った処理の後にエラーが残っているか
     subject { user.valid? }
 
-    #factoriesで作成したテストデータをデータベース(テストデータベース)に突っ込む
-    #テストの時に予めデータを突っ込んでおきたい
-    #データは3つRDS,デベロップメントデータベース,テストデータベース
-    #[!]つかない場合使用する時まで作らない、[!]
-    #かける範囲
+    # factoriesで作成したテストデータをデータベース(テストデータベース)に突っ込む
+    # テストの時に予めデータを突っ込んでおきたい
+    # データは3つRDS,デベロップメントデータベース,テストデータベース
+    # [!]つかない場合使用する時まで作らない、[!]
+    # かける範囲
     let!(:other_user) { create(:user) }
-    let(:user){build(:user)}
+    let(:user) { build(:user) }
     # let(:user_without_name){build(:user, name:"")}
-    let(:user_limit_1_name){build(:user, name: Faker::Lorem.characters(number: 1))}
-    let(:user_limit_2_name){build(:user, name: Faker::Lorem.characters(number: 2))}
-    let(:user_limit_20_name){build(:user, name: Faker::Lorem.characters(number: 20))}
-    let(:user_limit_21_name){build(:user, name: Faker::Lorem.characters(number: 21))}
-    let(:user_limit_150_self_introduction){build(:user, self_introduction: Faker::Lorem.characters(number: 150))}
-    let(:user_limit_151_self_introduction){build(:user, self_introduction: Faker::Lorem.characters(number: 151))}
+    let(:user_limit_1_name) { build(:user, name: Faker::Lorem.characters(number: 1)) }
+    let(:user_limit_2_name) { build(:user, name: Faker::Lorem.characters(number: 2)) }
+    let(:user_limit_20_name) { build(:user, name: Faker::Lorem.characters(number: 20)) }
+    let(:user_limit_21_name) { build(:user, name: Faker::Lorem.characters(number: 21)) }
+    let(:user_limit_150_self_introduction) { build(:user, self_introduction: Faker::Lorem.characters(number: 150)) }
+    let(:user_limit_151_self_introduction) { build(:user, self_introduction: Faker::Lorem.characters(number: 151)) }
 
     context 'nameカラム' do
-      #この場だけのデータを生成
+      # この場だけのデータを生成
       it '空欄でないこと' do
-        user = FactoryBot.build(:user, name:"")
+        user = FactoryBot.build(:user, name: '')
         expect(user).not_to be_valid
       end
       it '2文字以上であること: 1文字は×' do

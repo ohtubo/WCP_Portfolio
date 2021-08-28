@@ -1,5 +1,4 @@
 class Scenario < ApplicationRecord
-
   attachment :scenario_image, destroy: false
 
   belongs_to :user
@@ -10,53 +9,54 @@ class Scenario < ApplicationRecord
   has_many  :scenario_tags, dependent: :destroy
   has_many  :tags, through: :scenario_tags
 
-	validates :title, presence: true, length: {maximum: 30}, uniqueness: true
-	validates :overview, presence: true, length: {maximum: 250}
-	validates :system_category, presence: true
-	validates :level, presence: true
-	validates :upper_limit_count, presence: true
-	validates :lower_limit_count, presence: true
-	validates :play_genre, presence: true
-	validates :play_time, presence: true
-	validates :content, presence: true, length: {maximum: 5000}
+  validates :title, presence: true, length: { maximum: 30 }, uniqueness: true
+  validates :overview, presence: true, length: { maximum: 250 }
+  validates :system_category, presence: true
+  validates :level, presence: true
+  validates :upper_limit_count, presence: true
+  validates :lower_limit_count, presence: true
+  validates :play_genre, presence: true
+  validates :play_time, presence: true
+  validates :content, presence: true, length: { maximum: 5000 }
 
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?
   end
 
   def save_tags(savescenario_tags)
-    current_tags = self.tags.pluck(:tag) unless self.tags.nil?
+    current_tags = tags.pluck(:tag) unless tags.nil?
     old_tags = current_tags - savescenario_tags
     new_tags = savescenario_tags - current_tags
 
     old_tags.each do |old_tag|
-      self.tags.delete Tag.find_by(tag: old_tag)
+      tags.delete Tag.find_by(tag: old_tag)
     end
 
     new_tags.each do |new_tag|
       scenario_tag = Tag.find_or_create_by(tag: new_tag)
-      self.tags << scenario_tag
+      tags << scenario_tag
     end
-
   end
 
-  def self.search_for(search_select,system_category, level, upper_limit_count, play_genre, play_time)
+  def self.search_for(search_select, system_category, level, _upper_limit_count, play_genre, _play_time)
     # @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
-    if search_select == "AND"
-      @record = Scenario.where(['system_category LIKE ? AND level LIKE ? AND play_genre LIKE ?', "#{system_category}", "#{level}", "#{play_genre}"])
-    elsif search_select == "OR"
-      @record = Scenario.where(['system_category LIKE ? OR level LIKE ? OR play_genre LIKE ?', "#{system_category}", "#{level}", "#{play_genre}"])
+    if search_select == 'AND'
+      @record = Scenario.where(['system_category LIKE ? AND level LIKE ? AND play_genre LIKE ?', system_category.to_s,
+                                level.to_s, play_genre.to_s])
+    elsif search_select == 'OR'
+      @record = Scenario.where(['system_category LIKE ? OR level LIKE ? OR play_genre LIKE ?', system_category.to_s,
+                                level.to_s, play_genre.to_s])
     end
     # @record = Scenario.where(['system_category ?', "#{system_category}"])
   end
 
   def self.search_for_category(search_category, search_word_1, search_word_2)
-    if search_category == "システムカテゴリ"
-      @record = Scenario.where(['system_category LIKE ?', "#{search_word_1}"])
-    elsif search_category == "難易度"
-      @record = Scenario.where(['level LIKE ?', "#{search_word_1}"])
-    elsif search_category == "プレイ時間"
-      @record = Scenario.where(['play_genre LIKE ? AND play_time LIKE ?', "#{search_word_1}", "#{search_word_2}"])
+    if search_category == 'システムカテゴリ'
+      @record = Scenario.where(['system_category LIKE ?', search_word_1.to_s])
+    elsif search_category == '難易度'
+      @record = Scenario.where(['level LIKE ?', search_word_1.to_s])
+    elsif search_category == 'プレイ時間'
+      @record = Scenario.where(['play_genre LIKE ? AND play_time LIKE ?', search_word_1.to_s, search_word_2.to_s])
     end
   end
 
@@ -108,8 +108,8 @@ class Scenario < ApplicationRecord
     "9人": 9,
     "上限なし": 10
   }, _suffix: :upper_limit_counts
-  
-  '#{:upper_limit_counts.to_i]人'
+
+  # '#{:upper_limit_counts.to_i]人'
 
   enum lower_limit_counts: {
     "1人": 1,
@@ -123,25 +123,24 @@ class Scenario < ApplicationRecord
     "9人": 9
   }, _suffix: :lower_limit_counts
 
-    enum play_genres: {
-      "オンライン": 1,
-      "オフライン": 2,
-    }
+  enum play_genres: {
+    "オンライン": 1,
+    "オフライン": 2
+  }
 
-    enum play_times: {
-      "1時間": 1,
-      "2時間": 2,
-      "3時間": 3,
-      "4時間": 4,
-      "5時間": 5,
-      "6時間": 6,
-      "7時間": 7,
-      "8時間以上": 8,
-    }
+  enum play_times: {
+    "1時間": 1,
+    "2時間": 2,
+    "3時間": 3,
+    "4時間": 4,
+    "5時間": 5,
+    "6時間": 6,
+    "7時間": 7,
+    "8時間以上": 8
+  }
 
-      enum search_selects: {
-      "AND": 1,
-      "OR": 2,
-    }
-
+  enum search_selects: {
+    "AND": 1,
+    "OR": 2
+  }
 end

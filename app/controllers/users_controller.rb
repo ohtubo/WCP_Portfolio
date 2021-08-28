@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!,except: [:show,:scenario_favorites]
-  before_action :ensure_correct_user, only: [:edit,:update]
+  before_action :authenticate_user!, except: %i[show scenario_favorites]
+  before_action :ensure_correct_user, only: %i[edit update]
 
   def show
     @user = User.find(params[:id])
@@ -14,11 +14,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user.id), notice: "プロフィール編集が完了しました"
+      redirect_to user_path(@user.id), notice: 'プロフィール編集が完了しました'
     else
       render 'edit'
     end
-
   end
 
   def scenario_favorites
@@ -35,9 +34,6 @@ class UsersController < ApplicationController
 
   def ensure_correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(@user.id), alert: "編集権限がありません。"
-    end
+    redirect_to user_path(@user.id), alert: '編集権限がありません。' unless @user == current_user
   end
-
 end

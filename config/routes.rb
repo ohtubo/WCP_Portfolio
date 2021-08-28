@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   # get 'users/edit'
   devise_for :users
 
-  resources :users, only: [:show, :edit, :update] do
-    resource :relationships, only: [:create, :destroy]
+  resources :users, only: %i[show edit update] do
+    resource :relationships, only: %i[create destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
     member do
-    get :scenario_favorites
+      get :scenario_favorites
     end
   end
 
-  resources :scenarios, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
-    resource :scenario_favorites, only: [ :create, :destroy]
+  resources :scenarios, only: %i[new create index show edit update destroy] do
+    resource :scenario_favorites, only: %i[create destroy]
     # get 'favorites' => 'scenario_favorites#favorites', as: 'favorites'
-    resources :scenario_comments, only: [:create, :destroy]
+    resources :scenario_comments, only: %i[create destroy]
     # get 'show' => 'scenario_favorites#show', as: 'show'
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
