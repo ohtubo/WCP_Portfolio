@@ -36,10 +36,10 @@
                 <div class="text-right">
                   <%= link_to "編集", edit_scenario_path(scenario),class:"btn btn-sm btn-success" %>
                   |
-                  <%= link_to "削除", scenario_path(scenario), method: :delete,class:"btn btn-sm btn-danger" %>
+                  <%= link_to "削除", scenario_path(scenario), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"btn btn-sm btn-danger" %>
                 </div>
               <% else %>
-                <div class="text-break"><%= scenario.overview %></div>
+                <div class="b-break"><%=safe_join(scenario.overview.split("\n"),tag(:br))%></div>
               <% end %>
           </td>
           <td id="scenario_favorite_index_<%= scenario.id %>" class=" align-middle">

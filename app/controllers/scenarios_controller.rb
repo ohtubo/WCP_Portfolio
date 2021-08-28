@@ -10,9 +10,13 @@ class ScenariosController < ApplicationController
     @scenario = Scenario.new(scenario_params)
     @scenario.user_id = current_user.id
     tag_list = []
-    tag_list.push(params[:scenario][:tag_id_1], params[:scenario][:tag_id_2], params[:scenario][:tag_id_3])
-    # tag_ids = params[:scenario][:tag_id_1]+","+params[:scenario][:tag_id_2]+","+params[:scenario][:tag_id_3]
-    # tag_list = tag_ids.split(',')
+    #↓短いが、空データも入れてしまう。
+    # tag_list.push(params[:scenario][:tag_id_1], params[:scenario][:tag_id_2], params[:scenario][:tag_id_3])
+    #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
+    tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
+    tag_list = tag_ids.split(',')
+    #配列からnilと空文字を取り除く
+    tag_list= tag_list.compact.delete_if(&:empty?)
     if @scenario.save
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ投稿が完了しました。'
@@ -23,6 +27,9 @@ class ScenariosController < ApplicationController
 
   def edit
     @scenario = Scenario.find(params[:id])
+    #カラム「tag」のみ表示[pluck(:tag)]
+    #データを1つのみ表示[limit(1)]
+    #データの2番目から表示[offset(1)]
     @tag_list_1 = @scenario.tags.limit(1).pluck(:tag)
     @tag_list_2 = @scenario.tags.limit(1).offset(1).pluck(:tag)
     @tag_list_3 = @scenario.tags.limit(1).offset(2).pluck(:tag)
@@ -31,8 +38,11 @@ class ScenariosController < ApplicationController
   def update
     @scenario = Scenario.find(params[:id])
     # tag_list = params[:scenario][:tag_ids].split(',')
-    tag_ids = params[:scenario][:tag_id_1] + ',' + params[:scenario][:tag_id_2] + ',' + params[:scenario][:tag_id_3]
+    #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
+    tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
     tag_list = tag_ids.split(',')
+    #配列からnilと空文字を取り除く
+    tag_list= tag_list.compact.delete_if(&:empty?)
     if @scenario.update(scenario_params)
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ編集が完了しました。'

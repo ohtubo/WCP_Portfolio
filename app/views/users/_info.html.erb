@@ -8,7 +8,7 @@
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-	  <th><%= user.self_introduction %></th>
+	  <th><%=safe_join(user.self_introduction.split("\n"),tag(:br))%></th>
   </tr>
 </table>
 

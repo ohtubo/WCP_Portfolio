@@ -17,11 +17,11 @@
       <h2><%= @scenario.title %></h2>
       <div>
         <%= link_to scenarios_path(search_category: "システムカテゴリ",search_word: @scenario.system_category ,sort: 5),class: 'text-decoration-none' do %>
-          <div class="btn btn-sm btn-danger" ><%= @scenario.system_category %> </div>
+          <div class="fas fa-star btn btn-sm btn-danger" ><%= @scenario.system_category %> </div>
         <% end %>
         <% @scenario.tags.each do |tag| %>
           <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: 'text-decoration-none' do %>
-            <div class=" btn btn-sm btn-warning "><%= tag.tag %></div>
+            <div class="fas fa-tag btn btn-sm btn-warning "><%= tag.tag %></div>
           <% end %>
         <% end %></br>
       </div>
@@ -36,8 +36,9 @@
         |
         プレイ時間<%= @scenario.play_time %>[<%= @scenario.play_genre %>]</br>
       </div>
-      <div class="text-break" >
-        <%= @scenario.overview %>
+      <div class="b-break">
+        <!--改行をtag[<br>]に変換する-->
+        <%=safe_join(@scenario.overview.split("\n"),tag(:br))%>
       </div>
     </div>
     <div class="col-md-4">
@@ -62,7 +63,7 @@
         </tr>
         <tr>
       	  <th>
-      	    <%= @user.self_introduction %>
+      	    <%=safe_join(@user.self_introduction.split("\n"),tag(:br))%>
           </th>
         </tr>
         <tr>
@@ -72,6 +73,8 @@
                 <div id="follow_user_<%= @user.id %>">
                   <%= render 'follows/follow-btn', user: @user %>
                 </div>
+        	    <% else %>
+        	      <%= link_to "編集", edit_scenario_path(@scenario),class:"btn btn-sm btn-success btn-block" %>
         	    <% end %>
       	    <% end %>
       	  </th>
