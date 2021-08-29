@@ -24,5 +24,8 @@ module WCPPortfolio
 
     #   # タイムゾーンを日本時間に設定
     #   config.time_zone = 'Asia/Tokyo'
+
+    # エラー時のレイアウト崩れをなくす[field_with_errors]
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end
