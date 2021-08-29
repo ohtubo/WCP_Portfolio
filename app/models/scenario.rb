@@ -30,11 +30,15 @@ class Scenario < ApplicationRecord
     # byebug
     # 独自のバリデーションの条件 lower_limit_count
     # enumの値を見たい場合は下記参照
-    if Scenario.lower_limit_counts[lower_limit_count] > Scenario.upper_limit_counts[upper_limit_count]
-      # byebug
-      errors.add(:lower_limit_count, "は[上限値]より小さい値を入力してください") # エラーメッセージ
-      errors.add(:upper_limit_count, "は[下限値]より大きい値を入力してください") # エラーメッセージ
+    unless Scenario.lower_limit_counts[lower_limit_count].nil?
+      unless Scenario.upper_limit_counts[upper_limit_count].nil?
+        if Scenario.lower_limit_counts[lower_limit_count] > Scenario.upper_limit_counts[upper_limit_count]
+          errors.add(:lower_limit_count, "は[上限値]より小さい値を入力してください") # エラーメッセージ
+          errors.add(:upper_limit_count, "は[下限値]より大きい値を入力してください") # エラーメッセージ
+        end
+      end
     end
+
   end
 
 
