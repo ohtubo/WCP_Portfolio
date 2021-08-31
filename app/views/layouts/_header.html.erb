@@ -13,7 +13,7 @@
           <ul class=" gnavi navbar-nav ml-auto">
             <% if user_signed_in? %>
               <li>
-                <%= link_to "シナリオ投稿", new_scenario_path, class:"fas fa-plus text-white text-decoration-none fas fa-file-plus" %>
+                <%= link_to "シナリオ投稿", new_scenario_path, class:"fas fa-plus text-white text-decoration-none fas fa-file-plus", data: {"turbolinks" => false} %>
               </li>
               <li>
                 <%= link_to "ランキング", scenarios_path(sort: 0), class:"fas fa-crown text-white text-decoration-none" %>

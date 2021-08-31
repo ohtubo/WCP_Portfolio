@@ -74,7 +74,7 @@
                   <%= render 'follows/follow-btn', user: @user %>
                 </div>
         	    <% else %>
-        	      <%= link_to "編集", edit_scenario_path(@scenario),class:"btn btn-sm btn-success btn-block" %>
+        	      <%= link_to "編集", edit_scenario_path(@scenario),class:"btn btn-sm btn-success btn-block", data: {"turbolinks" => false} %>
         	    <% end %>
       	    <% end %>
       	  </th>

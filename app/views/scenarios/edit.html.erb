@@ -19,12 +19,18 @@
               <tr class="bbd">
                 <!--class="bbd"-->
                 <td style="width: 20%"><%= f.label "タイトル" %></td>
-                <td><%= f.text_field :title, class:"form-control-scenarios",  size: 50 %></td>
+                <td>
+                  <%= f.text_field :title,  size: 50, class:"form-control-scenarios js-text-title" %></br>
+                  <span class="js-text-title-count"></span>
+                </td>
                 <td style="width: 20%"></td>
               </tr>
               <tr class="bbd">
                 <td><%= f.label "概要" %></td>
-                <td><%= f.text_area :overview , :size=>"80x5", class:"form-control-scenarios"%></td>
+                <td>
+                  <%= f.text_area :overview , :size=>"80x5", class:"form-control-scenarios js-text-overview"%></br>
+                  <span class="js-text-overview-count"></span>
+                </td>
                 <td></td>
               </tr>
               <tr class="bbd">

@@ -34,7 +34,7 @@
             </div>
               <% if scenario.user == current_user %>
                 <div class="text-right">
-                  <%= link_to "編集", edit_scenario_path(scenario),class:"btn btn-sm btn-success" %>
+                  <%= link_to "編集", edit_scenario_path(scenario),class:"btn btn-sm btn-success", data: {"turbolinks" => false} %>
                   |
                   <%= link_to "削除", scenario_path(scenario), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"btn btn-sm btn-danger" %>
                 </div>
