@@ -18,6 +18,13 @@ class ScenariosController < ApplicationController
     #配列からnilと空文字を取り除く
     tag_list= tag_list.compact.delete_if(&:empty?)
     if @scenario.save
+      
+      #API実装
+      # tags = Vision.get_image_data(@scenario.scenario_image)
+      # tags.each do |tag|
+      #   @scenario.tags.create(name: tag)
+      # end
+
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ投稿が完了しました。'
     else

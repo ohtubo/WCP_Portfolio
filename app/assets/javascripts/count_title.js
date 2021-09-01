@@ -11,7 +11,7 @@ $(function (){
   //残りの入力できる文字数を計算
   var now_count = 30 - count;
   // console.log(now_count);
-  //文字数がオーバーしていたら文字色を赤にする
+  //文字数がオーバーしていたら文字色を赤にする[静的な表示]
   if (count > 30) {
     $(".js-text-title-count").css("color","red");
   }
@@ -20,7 +20,7 @@ $(function (){
 
   $(".js-text-title").on("keyup", function() {
     // 処理（キーボードを押した時、フォームに残り何文字入力できるかを数えて表示する）
-    //フォームのvalueの文字数を数える
+    //フォームのvalueの文字数を数えるる[動的な表示]
     var count = $(this).val().replace(/\n/g, "改行").length;
     var now_count = 30 - count;
 
