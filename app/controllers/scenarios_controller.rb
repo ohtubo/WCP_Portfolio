@@ -9,22 +9,25 @@ class ScenariosController < ApplicationController
   def create
     @scenario = Scenario.new(scenario_params)
     @scenario.user_id = current_user.id
-    tag_list = []
+
     #↓短いが、空データも入れてしまう。
     # tag_list.push(params[:scenario][:tag_id_1], params[:scenario][:tag_id_2], params[:scenario][:tag_id_3])
     #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
     tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
-    tag_list = tag_ids.split(',')
-    #配列からnilと空文字を取り除く
-    tag_list= tag_list.compact.delete_if(&:empty?)
-    if @scenario.save
-      
-      #API実装
-      # tags = Vision.get_image_data(@scenario.scenario_image)
-      # tags.each do |tag|
-      #   @scenario.tags.create(name: tag)
-      # end
 
+    if @scenario.save
+
+      # API実装
+      ai_tags = Vision.get_image_data(@scenario.scenario_image)
+      ai_tags.each do |ai_tag|
+        # @scenario.tags.create(tag: ai_tag)
+       ai_tag = Translation.get_Translation_data(ai_tag)
+       tag_ids = tag_ids + ',' + ai_tag
+      end
+      tag_list = []
+      tag_list = tag_ids.split(',')
+      #配列からnilと空文字を取り除く
+      tag_list= tag_list.compact.delete_if(&:empty?)
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ投稿が完了しました。'
     else
@@ -47,10 +50,20 @@ class ScenariosController < ApplicationController
     # tag_list = params[:scenario][:tag_ids].split(',')
     #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
     tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
-    tag_list = tag_ids.split(',')
-    #配列からnilと空文字を取り除く
-    tag_list= tag_list.compact.delete_if(&:empty?)
     if @scenario.update(scenario_params)
+
+      # API実装
+      ai_tags = Vision.get_image_data(@scenario.scenario_image)
+      ai_tags.each do |ai_tag|
+        # @scenario.tags.create(tag: ai_tag)
+       ai_tag = Translation.get_Translation_data(ai_tag)
+       tag_ids = tag_ids + ',' + ai_tag
+      end
+
+      tag_list = []
+      tag_list = tag_ids.split(',')
+      #配列からnilと空文字を取り除く
+      tag_list= tag_list.compact.delete_if(&:empty?)
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ編集が完了しました。'
     else
