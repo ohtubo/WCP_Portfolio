@@ -39,7 +39,7 @@ https://xd.adobe.com/view/2f75237d-f012-44bf-9d58-8449e36a93d4-7a26/
 - 画面遷移
 https://app.diagrams.net/#G1qBF8med9VQJlMrJ94OB0VckN407g3MWg
 - テーブル定義書
-<未作成>
+https://docs.google.com/spreadsheets/d/19l-GJUtndkZS6JnsZpvGaXNd4--6L8kp8XQdo0rZ_N8/edit#gid=0
 - アプリケーション詳細設計
 <未作成>
 
