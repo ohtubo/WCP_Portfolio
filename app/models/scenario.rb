@@ -1,6 +1,12 @@
 class Scenario < ApplicationRecord
+  
+  #refileが「scenario_image」にアクセスできるようにするためattachmentメソッド設定する-----------------------------------
   attachment :scenario_image, destroy: false
-
+  #----------------------------------------------------------------------------------------------------------------------
+  
+  
+  #アソシエーションの設定-----------------------------------------------------------------------------------------------
+  
   belongs_to :user
   has_many :scenario_comments, dependent: :destroy
   has_many :scenario_favorites, dependent: :destroy
@@ -8,7 +14,13 @@ class Scenario < ApplicationRecord
 
   has_many  :scenario_tags, dependent: :destroy
   has_many  :tags, through: :scenario_tags
+  
+  #----------------------------------------------------------------------------------------------------------------------
 
+  
+  #ヴァリデーションを設定------------------------------------------------------------------------------------------------
+  
+  #{presence: true(空白禁止)},{length: { maximum: 30 }(n+1文字以上禁止)},{uniqueness: true(重複禁止)}
   validates :title, presence: true, length: { maximum: 30 }, uniqueness: true
   validates :overview, presence: true, length: { maximum: 250 }
   validates :system_category, presence: true
@@ -40,16 +52,23 @@ class Scenario < ApplicationRecord
     end
 
   end
+  
+  #---------------------------------------------------------------------------------------------------------------------
 
 
+  #関数-----------------------------------------------------------------------------------------------------------------
+  
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?
   end
-
+  
+  #タグの保存(テーブルに値の重複がなければ保存する)
   def save_tags(savescenario_tags)
-    current_tags = tags.pluck(:tag) unless tags.nil?
-    old_tags = current_tags - savescenario_tags
-    new_tags = savescenario_tags - current_tags
+    current_tags = tags.pluck(:tag) 
+    unless tags.nil?
+      old_tags = current_tags - savescenario_tags
+      new_tags = savescenario_tags - current_tags
+    end
 
     old_tags.each do |old_tag|
       tags.delete Tag.find_by(tag: old_tag)
@@ -60,7 +79,10 @@ class Scenario < ApplicationRecord
       tags << scenario_tag
     end
   end
-
+  
+  #モデル[Scenario]の検索
+    #(ANDの場合：カテゴリ,難易度,プレイ時間の完全一致)
+    #(ORの場合：カテゴリ,難易度,プレイ時間の部分一致)
   def self.search_for(search_select, system_category, level, _upper_limit_count, play_genre, _play_time)
     # @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
     if search_select == 'AND'
@@ -72,7 +94,8 @@ class Scenario < ApplicationRecord
     end
     # @record = Scenario.where(['system_category ?', "#{system_category}"])
   end
-
+  
+  #モデル[Scenario]の検索
   def self.search_for_category(search_category, search_word_1, search_word_2)
     if search_category == 'システムカテゴリ'
       @record = Scenario.where(['system_category LIKE ?', search_word_1.to_s])
@@ -82,7 +105,11 @@ class Scenario < ApplicationRecord
       @record = Scenario.where(['play_genre LIKE ? AND play_time LIKE ?', search_word_1.to_s, search_word_2.to_s])
     end
   end
+  
+  #---------------------------------------------------------------------------------------------------------------------
 
+  
+  #enumの設定-----------------------------------------------------------------------------------------------------------
   enum categories: {
     "クトゥルフ": 1,
     "パラノイア": 2,
@@ -166,4 +193,5 @@ class Scenario < ApplicationRecord
     "AND": 1,
     "OR": 2
   }
+  #-----------------------------------------------------------------------------------------------------------------------------------
 end
