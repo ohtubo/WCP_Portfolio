@@ -4,7 +4,6 @@ class ScenarioFavoritesController < ApplicationController
     favorite = current_user.scenario_favorites.new(scenario_id: @scenario.id)
     flash.now[:notice] = 'いいねしました。'
     favorite.save
-    # redirect_to request.referer, notice: "いいねしました。"
   end
 
   def destroy
