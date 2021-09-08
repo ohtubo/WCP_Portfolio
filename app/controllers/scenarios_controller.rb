@@ -18,12 +18,16 @@ class ScenariosController < ApplicationController
     if @scenario.save
 
       # API実装
-      ai_tags = Vision.get_image_data(@scenario.scenario_image)
-      ai_tags.each do |ai_tag|
-        # @scenario.tags.create(tag: ai_tag)
-       ai_tag = Translation.get_Translation_data(ai_tag)
-       tag_ids = tag_ids + ',' + ai_tag
-      end
+      # byebug
+      # @scenario.scenario_imageがnillの場合、base64にエンコードできない為分岐させる。
+      unless @scenario.scenario_image.nil?
+        ai_tags = Vision.get_image_data(@scenario.scenario_image)
+        ai_tags.each do |ai_tag|
+          # @scenario.tags.create(tag: ai_tag)
+         ai_tag = Translation.get_Translation_data(ai_tag)
+         tag_ids = tag_ids + ',' + ai_tag
+        end
+      end 
       tag_list = []
       tag_list = tag_ids.split(',')
       #配列からnilと空文字を取り除く
@@ -53,6 +57,7 @@ class ScenariosController < ApplicationController
     if @scenario.update(scenario_params)
 
       # API実装
+      # byebug
       ai_tags = Vision.get_image_data(@scenario.scenario_image)
       ai_tags.each do |ai_tag|
         # @scenario.tags.create(tag: ai_tag)
