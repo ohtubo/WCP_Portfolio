@@ -8,6 +8,7 @@ class ScenarioCommentsController < ApplicationController
     @Scenario_comment.scenario_id = @scenario.id
     # 保存が失敗した場合、エラー？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？？
     unless @Scenario_comment.save
+      #error.js.erbに遷移する
       render 'error'
     end
     # redirect_to scenario_path(scenario)
