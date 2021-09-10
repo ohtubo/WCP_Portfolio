@@ -11,6 +11,7 @@ class RelationshipsController < ApplicationController
     flash.now[:notice] = 'フォローが解除されました。'
   end
 
+  # フォロー一覧を表示するアクション
   def followings
     user = User.find(params[:user_id])
     @users = user.followings
@@ -18,6 +19,7 @@ class RelationshipsController < ApplicationController
     @usertitle = 'フォロー'
   end
 
+  # フォロワー一覧を表示するアクション
   def followers
     user = User.find(params[:user_id])
     @users = user.followers
