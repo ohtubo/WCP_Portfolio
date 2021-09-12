@@ -1,5 +1,6 @@
 $("#scenario_<%= @scenario.id %> .list-comments").html("<%= escape_javascript(render 'scenario_comments/index', scenario: @scenario) %>");
 <!--$("#error_comment_<%#= @Scenario_comment.id %>").html("<%#= escape_javascript(render 'scenario_comments/error', error_comment: @error_comment) %>");-->
+$("#comments_error").html("");
 $("#scenario_comment_comment").val("");
 
 <!--"#scenario_<%#= @scenario.id %> .list-comments" 「id」なくてもできるが判別しやすい-->
