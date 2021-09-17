@@ -84,6 +84,7 @@ gem 'toastr-rails'
 gem 'rails-i18n'
 # かみなり(ページング)実装
 gem 'kaminari'
+
 # 構文チェック
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
@@ -98,9 +99,13 @@ group :test do
   gem 'faker'
 end
 
+# データベースの接続設定で「環境変数」を利用するので、環境変数を管理するGem
+# プロジェクトごとにファイルベースで環境変数を管理することが出来る
 gem 'dotenv-rails'
 group :production do
+  # 本番環境でMySQLを利用するために必要なgem
   gem 'mysql2'
 end
+
 #環境変数を扱うためのgem
 gem 'dotenv-rails'

@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
   def searche
+    binding.irb
     @model = 'searche'
     @search_eselect = params[:search_eselect]
     @system_category = params[:system_category]
