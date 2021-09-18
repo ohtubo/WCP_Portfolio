@@ -18,8 +18,8 @@ class Scenario < ApplicationRecord
   #----------------------------------------------------------------------------------------------------------------------
 
 
-scope :serche_by_system_category, -> (system_category) { where(system_category: system_category)}
-scope
+# scope :serche_by_system_category, -> (system_category) { where(system_category: system_category)}
+# scope
 
   #ヴァリデーションを設定------------------------------------------------------------------------------------------------
 

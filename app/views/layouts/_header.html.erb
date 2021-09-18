@@ -26,6 +26,9 @@
               </li>
             <% else %>
               <li>
+                <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class:"fas fa-user-secret text-white text-decoration-none" %>
+              </li>
+              <li>
                 <%= link_to "ランキング", scenarios_path(sort: 0), class:"fas fa-crown text-white text-decoration-none" %>
               </li>
               <li>
