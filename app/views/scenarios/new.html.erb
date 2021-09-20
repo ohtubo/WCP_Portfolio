@@ -75,7 +75,23 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="4"><%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%></td>
+                <td colspan="4">
+                  <%#= link_to root_path,class: "btn btn-outline-secondary text-center" do %>
+                       <!--見出し1追加-->
+                  <%# end %>
+                  <%#= link_to root_path,class: "btn btn-outline-secondary text-center" do %>
+                       <!--見出し2追加-->
+                  <%# end %>
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#">記入欄</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">見本欄</a>
+                    </li>
+                  </ul>
+                  <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
+                  </td>
               </tr>
               <tr >
                 <td colspan="4" class="text-right">
