@@ -215,3 +215,40 @@ ul, li{
     margin-left: 65px;
 }
 // -------------------------------------------------------
+
+
+//---投稿編集TABレイアウト-----------------------------------------------------
+/*tabの形状*/
+.tab{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tab li a{
+  display: block;
+  background:#ddd;
+  margin:0 1px;
+  padding:10px 20px;
+}
+
+/*liにactiveクラスがついた時の形状*/
+.tab li.active a{
+  background:#fff;
+}
+
+/*areaにis-activeというクラスがついた時の形状*/
+.area.is-active {
+    display: block;/*表示*/
+    animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes displayAnime{
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

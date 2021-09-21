@@ -82,15 +82,53 @@
                   <%#= link_to root_path,class: "btn btn-outline-secondary text-center" do %>
                        <!--見出し2追加-->
                   <%# end %>
-                  <ul class="nav nav-tabs">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#">記入欄</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">見本欄</a>
-                    </li>
-                  </ul>
-                  <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
+                  <!--<ul class="nav nav-tabs">-->
+                  <!--  <li class="nav-item">-->
+                  <!--    <a class="nav-link active" href="#">記入欄</a>-->
+                  <!--  </li>-->
+                  <!--  <li class="nav-item">-->
+                  <!--    <a class="nav-link" href="#">見本欄</a>-->
+                  <!--  </li>-->
+                  <!--</ul>-->
+                  
+                  <div class="wrapper">
+                  <!--<ul class="nav nav-tabs tab">-->
+                  <!--  <li class="nav-item"><a class="nav-link" href="#lunch">ランチ</a></li>-->
+                  <!--  <li class="nav-item"><a class="nav-link" href="#drink">ドリンク</a></li>-->
+                  <!--  <li class="nav-item"><a class="nav-link" href="#dinner">ディナー</a></li>-->
+                  <!--</ul>-->
+                    <ul class="tab">
+                      <li><a href="#lunch">ランチ</a></li>
+                      <li><a href="#drink">ドリンク</a></li>
+                      <li><a href="#dinner">ディナー</a></li>
+                    </ul>
+                    <div id="lunch" class="area">
+                      <h2>ランチ</h2>
+                      <ul>
+                        <li>ガパオライス</li>
+                        <li>ミートソーススパゲティ―</li>
+                        <li>ハンバーグ定食</li>
+                      </ul>
+                    </div>
+                    <div id="drink" class="area">
+                      <h2>ドリンク</h2>
+                      <ul>
+                        <li>ウーロン茶</li>
+                        <li>オレンジジュース</li>
+                        <li>ジンジャーエール</li>
+                      </ul>
+                    </div>
+                    <div id="dinner" class="area">
+                      <h2>ディナー</h2>
+                      <ul>
+                        <li>カレーライス</li>
+                        <li>ドリア</li>
+                        <li>グラタン</li>
+                      </ul>
+                    </div>
+                  </div>
+                
+                <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
                   </td>
               </tr>
               <tr >
