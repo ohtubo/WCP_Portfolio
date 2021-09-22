@@ -63,7 +63,9 @@
         </tr>
         <tr>
       	  <th>
-      	    <%=safe_join(@user.self_introduction.split("\n"),tag(:br))%>
+      	    <% if @user.self_introduction.present? %>
+      	      <%=safe_join(@user.self_introduction.split("\n"),tag(:br))%>
+      	    <% end %>
           </th>
         </tr>
         <tr>

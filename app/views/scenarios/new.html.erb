@@ -90,7 +90,7 @@
                   <!--    <a class="nav-link" href="#">見本欄</a>-->
                   <!--  </li>-->
                   <!--</ul>-->
-                  
+
                   <div class="wrapper">
                   <!--<ul class="nav nav-tabs tab">-->
                   <!--  <li class="nav-item"><a class="nav-link" href="#lunch">ランチ</a></li>-->
@@ -98,17 +98,18 @@
                   <!--  <li class="nav-item"><a class="nav-link" href="#dinner">ディナー</a></li>-->
                   <!--</ul>-->
                     <ul class="tab">
-                      <li><a href="#lunch">ランチ</a></li>
-                      <li><a href="#drink">ドリンク</a></li>
-                      <li><a href="#dinner">ディナー</a></li>
+                      <li><a href="#lunch">記入欄</a></li>
+                      <li><a href="#drink">プレビュー</a></li>
+                      <li><a href="#dinner">見本</a></li>
                     </ul>
                     <div id="lunch" class="area">
-                      <h2>ランチ</h2>
-                      <ul>
-                        <li>ガパオライス</li>
-                        <li>ミートソーススパゲティ―</li>
-                        <li>ハンバーグ定食</li>
-                      </ul>
+                      <!--<h2>ランチ</h2>-->
+                      <!--<ul>-->
+                      <!--  <li>ガパオライス</li>-->
+                      <!--  <li>ミートソーススパゲティ―</li>-->
+                      <!--  <li>ハンバーグ定食</li>-->
+                      <!--</ul>-->
+                      <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
                     </div>
                     <div id="drink" class="area">
                       <h2>ドリンク</h2>
@@ -119,16 +120,94 @@
                       </ul>
                     </div>
                     <div id="dinner" class="area">
-                      <h2>ディナー</h2>
-                      <ul>
-                        <li>カレーライス</li>
-                        <li>ドリア</li>
-                        <li>グラタン</li>
-                      </ul>
+                      <h2>Markdown記法一覧</h2>
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">種類</th>
+                            <th scope="col">表記方法</th>
+                            <th scope="col">表記例</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>段落</td>
+                            <td>空白行</td>
+                            <td>1段落目<p></p>
+                            <p>2段落目</p></td>
+                          </tr>
+                          <tr>
+                            <td>改行</td>
+                            <td>行末に2つ以上の半角スペース</td>
+                            <td>1行目　　（行末に2つ以上の半角スペース）<br>
+                            2行目</td>
+                          </tr>
+                          <tr>
+                            <td>見出し</td>
+                            <td>行頭に#<br>
+                            （#の個数がH1～H6）</td>
+                            <td>#見出し1<br>
+                            ##見出し2</td>
+                          </tr>
+                          <tr>
+                            <td>強調</td>
+                            <td>テキストの前後に * または _</td>
+                            <td>*強調*</td>
+                          </tr>
+                          <tr>
+                            <td>リスト</td>
+                            <td>行頭に *または-</td>
+                            <td>* リスト項目1<br>
+                            * リスト項目2<br>
+                            * リスト項目3</td>
+                          </tr>
+                          <tr>
+                            <td>番号付リスト</td>
+                            <td>行頭に 数字.</td>
+                            <td>1. リスト項目1<br>
+                            2. リスト項目2<br>
+                            3. リスト項目3</td>
+                          </tr>
+                          <tr>
+                            <td>引用</td>
+                            <td>行頭に&gt;</td>
+                            <td>&gt;メールの返信と同じですね</td>
+                          </tr>
+                          <tr>
+                            <td>ソースコード</td>
+                            <td>テキストの前後に`</td>
+                            <td>`npm run dev`</td>
+                          </tr>
+                          <tr>
+                            <td>区切り線</td>
+                            <td>3つ以上の * か _ または –</td>
+                            <td>– – –</td>
+                          </tr>
+                          <tr>
+                            <td>表</td>
+                            <td>| で整形<br>
+                            |<br>
+                            : で左/中/右揃え<br>
+                            – – – – – – – – -: |</td>
+                            <td>| No&nbsp;&nbsp; | 氏名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 保有資格<br>
+                            | – – -: | :- – – – – | :<br>
+                            | 1&nbsp;&nbsp;&nbsp; | 佐藤 一郎&nbsp; | ITサービスマネージャ |</td>
+                          </tr>
+                          <tr>
+                            <td>画像</td>
+                            <td>行頭に !</td>
+                            <td>![画像１](https://un4navi.com/wp-content/uploads/tcd-w/logo.png?1576654454 “運用ナビ ロゴ”)</td>
+                          </tr>
+                          <tr>
+                            <td>リンク</td>
+                            <td>[タイトル](リンク先URL)</td>
+                            <td>[運用ナビ](https://un4navi.com/ “システム運用に関する、人気の情報サイト”)</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </div>
-                
-                <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
+                  
                   </td>
               </tr>
               <tr >

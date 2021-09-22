@@ -10,7 +10,12 @@
 	  <th><%= user.name %></th>
   </tr>
   <tr>
-	  <th><%=safe_join(user.self_introduction.split("\n"),tag(:br))%></th>
+    <!--.split("\n"),tag(:br)：改行をそのまま表示する-->
+	  <th>
+	    <% if user.self_introduction.present? %>
+  	    <%=safe_join(user.self_introduction.split("\n"),tag(:br))%>
+	    <% end %>
+	  </th>
   </tr>
 </table>
 

@@ -27,7 +27,7 @@ class ScenariosController < ApplicationController
          ai_tag = Translation.get_Translation_data(ai_tag)
          tag_ids = tag_ids + ',' + ai_tag
         end
-      end 
+      end
       tag_list = []
       tag_list = tag_ids.split(',')
       #配列からnilと空文字を取り除く
@@ -58,11 +58,13 @@ class ScenariosController < ApplicationController
 
       # API実装
       # byebug
-      ai_tags = Vision.get_image_data(@scenario.scenario_image)
-      ai_tags.each do |ai_tag|
-        # @scenario.tags.create(tag: ai_tag)
-       ai_tag = Translation.get_Translation_data(ai_tag)
-       tag_ids = tag_ids + ',' + ai_tag
+      unless @scenario.scenario_image.nil?
+        ai_tags = Vision.get_image_data(@scenario.scenario_image)
+        ai_tags.each do |ai_tag|
+          # @scenario.tags.create(tag: ai_tag)
+         ai_tag = Translation.get_Translation_data(ai_tag)
+         tag_ids = tag_ids + ',' + ai_tag
+        end
       end
 
       tag_list = []
