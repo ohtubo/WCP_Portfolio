@@ -51,11 +51,11 @@
   <div class="row">
     <div class="col-md-8">
       <div>
-        <%= markdown(@scenario.content).html_safe %>
+        <%= markdown(@scenario.content) %>
       </div>
     </div>
     <div class="col-md-4">
-      <!--ユーザー情報-->
+<!--ユーザー情報------------------------------------------------------------------------------------------------------------>
       <table>
         <tr>
           <%= attachment_image_tag(@user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %>
@@ -86,7 +86,7 @@
   </div>
   <div class='row bbd12'></div>
   <div class="row">
-    <!--作品コメント一覧-->
+<!--作品コメント一覧--------------------------------------------------------------------------------------------->
     <div class="list-comments">
       <div class="col-md-8">
         <%= render 'scenario_comments/index', scenario: @scenario %>

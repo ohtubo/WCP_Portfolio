@@ -1,11 +1,9 @@
 class Scenario < ApplicationRecord
-
-  #refileが「scenario_image」にアクセスできるようにするためattachmentメソッド設定する-----------------------------------
+  # refileが「scenario_image」にアクセスできるようにするためattachmentメソッド設定する-----------------------------------
   attachment :scenario_image, destroy: false
   #----------------------------------------------------------------------------------------------------------------------
 
-
-  #アソシエーションの設定-----------------------------------------------------------------------------------------------
+  # アソシエーションの設定-----------------------------------------------------------------------------------------------
 
   belongs_to :user
   has_many :scenario_comments, dependent: :destroy
@@ -17,13 +15,12 @@ class Scenario < ApplicationRecord
 
   #----------------------------------------------------------------------------------------------------------------------
 
+  # scope :serche_by_system_category, -> (system_category) { where(system_category: system_category)}
+  # scope
 
-# scope :serche_by_system_category, -> (system_category) { where(system_category: system_category)}
-# scope
+  # ヴァリデーションを設定------------------------------------------------------------------------------------------------
 
-  #ヴァリデーションを設定------------------------------------------------------------------------------------------------
-
-  #{presence: true(空白禁止)},{length: { maximum: 30 }(n+1文字以上禁止)},{uniqueness: true(重複禁止)}
+  # {presence: true(空白禁止)},{length: { maximum: 30 }(n+1文字以上禁止)},{uniqueness: true(重複禁止)}
   validates :title, presence: true, length: { maximum: 30 }, uniqueness: true
   validates :overview, presence: true, length: { maximum: 250 }
   validates :system_category, presence: true
@@ -53,19 +50,17 @@ class Scenario < ApplicationRecord
         end
       end
     end
-
   end
 
   #---------------------------------------------------------------------------------------------------------------------
 
-
-  #関数-----------------------------------------------------------------------------------------------------------------
+  # 関数-----------------------------------------------------------------------------------------------------------------
 
   def favorited_by?(user)
     scenario_favorites.where(user_id: user.id).exists?
   end
 
-  #タグの保存(テーブルに値の重複がなければ保存する)
+  # タグの保存(テーブルに値の重複がなければ保存する)
   def save_tags(savescenario_tags)
     current_tags = tags.pluck(:tag)
     unless tags.nil?
@@ -83,25 +78,29 @@ class Scenario < ApplicationRecord
     end
   end
 
-  #モデル[Scenario]の検索
-    #(ANDの場合：カテゴリ,難易度,プレイ時間の完全一致)
-    #(ORの場合：カテゴリ,難易度,プレイ時間の部分一致)
+  # モデル[Scenario]の検索
+  # (ANDの場合：カテゴリ,難易度,プレイ時間の完全一致)
+  # (ORの場合：カテゴリ,難易度,プレイ時間の部分一致)
   def self.search_for(search_select, system_category, level, _upper_limit_count, play_genre, _play_time)
     # @record = Scenario.where(['system_category ? AND level ?', "#{content}", "#{content}"])
     if search_select == 'AND'
       binding.irb
-      #最初から入っているもの。
-      
-      @record = Scenario.where(['system_category LIKE ? AND level LIKE ? AND play_genre LIKE ?', system_category.to_s,
-                                level.to_s, nil ])
+      # 最初から入っているもの。
+
+      @record = Scenario.where([
+        'system_category LIKE ? AND level LIKE ? AND play_genre LIKE ?', system_category.to_s,
+        level.to_s, nil,
+      ])
     elsif search_select == 'OR'
-      @record = Scenario.where(['system_category LIKE ? OR level LIKE ? OR play_genre LIKE ?', system_category.to_s,
-                                level.to_s, play_genre.to_s])
+      @record = Scenario.where([
+        'system_category LIKE ? OR level LIKE ? OR play_genre LIKE ?', system_category.to_s,
+        level.to_s, play_genre.to_s,
+      ])
     end
     # @record = Scenario.where(['system_category ?', "#{system_category}"])
   end
 
-  #モデル[Scenario]の検索
+  # モデル[Scenario]の検索
   def self.search_for_category(search_category, search_word_1, search_word_2)
     if search_category == 'システムカテゴリ'
       @record = Scenario.where(['system_category LIKE ?', search_word_1.to_s])
@@ -114,8 +113,7 @@ class Scenario < ApplicationRecord
 
   #---------------------------------------------------------------------------------------------------------------------
 
-
-  #enumの設定-----------------------------------------------------------------------------------------------------------
+  # enumの設定-----------------------------------------------------------------------------------------------------------
   enum categories: {
     "クトゥルフ": 1,
     "パラノイア": 2,
@@ -141,7 +139,7 @@ class Scenario < ApplicationRecord
     "ダークデイズドライブ": 22,
     "ヤンキー＆ヨグ=ソトース": 23,
     "フィアスコ": 24,
-    "その他": 50
+    "その他": 50,
   }
 
   enum levels: {
@@ -149,7 +147,7 @@ class Scenario < ApplicationRecord
     "★★": 2,
     "★★★": 3,
     "★★★★": 4,
-    "★★★★★": 5
+    "★★★★★": 5,
   }
 
   enum upper_limit_counts: {
@@ -162,7 +160,7 @@ class Scenario < ApplicationRecord
     "7人": 7,
     "8人": 8,
     "9人": 9,
-    "上限なし": 10
+    "上限なし": 10,
   }, _suffix: :upper_limit_counts
 
   # '#{:upper_limit_counts.to_i]人'
@@ -176,12 +174,12 @@ class Scenario < ApplicationRecord
     "6人": 6,
     "7人": 7,
     "8人": 8,
-    "9人": 9
+    "9人": 9,
   }, _suffix: :lower_limit_counts
 
   enum play_genres: {
     "オンライン": 1,
-    "オフライン": 2
+    "オフライン": 2,
   }
 
   enum play_times: {
@@ -192,12 +190,12 @@ class Scenario < ApplicationRecord
     "5時間": 5,
     "6時間": 6,
     "7時間": 7,
-    "8時間以上": 8
+    "8時間以上": 8,
   }
 
   enum search_selects: {
     "AND": 1,
-    "OR": 2
+    "OR": 2,
   }
   #-----------------------------------------------------------------------------------------------------------------------------------
 end

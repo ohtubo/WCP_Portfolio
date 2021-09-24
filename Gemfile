@@ -38,7 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', platforms: %i(mri mingw x64_mingw)
 end
 
 group :development do
@@ -59,7 +59,7 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 
 # デバイス機能追加
 gem 'devise'
@@ -86,8 +86,9 @@ gem 'rails-i18n'
 gem 'kaminari'
 
 # 構文チェック
-gem 'rubocop', require: false
-gem 'rubocop-rails', require: false
+# gem 'rubocop', require: false
+# gem 'rubocop-rails', require: false
+gem 'rubocop-airbnb'
 
 group :test do
   gem 'capybara', '>= 2.15'
@@ -107,5 +108,5 @@ group :production do
   gem 'mysql2'
 end
 
-#環境変数を扱うためのgem
+# 環境変数を扱うためのgem
 gem 'dotenv-rails'

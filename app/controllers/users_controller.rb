@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: %i[show scenario_favorites]
-  before_action :ensure_correct_user, only: %i[edit update]
+  before_action :authenticate_user!, except: %i(show scenario_favorites)
+  before_action :ensure_correct_user, only: %i(edit update)
 
   def show
     @user = User.find(params[:id])

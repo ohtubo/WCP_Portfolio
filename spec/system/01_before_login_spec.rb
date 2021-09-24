@@ -17,6 +17,7 @@ describe '[STEP1] ユーザログイン前のテスト' do
     before do
       visit root_path
     end
+
     context '表示内容の確認' do
       it 'TopTopリンクが表示される:タイトルが表示される' do
         rank_link = find_all('a')[0].native.inner_text

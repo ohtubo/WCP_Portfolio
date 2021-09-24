@@ -1,3 +1,4 @@
+# ゲストログイン機能のコントローラー
 class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest

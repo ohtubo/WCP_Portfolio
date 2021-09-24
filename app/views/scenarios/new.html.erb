@@ -99,7 +99,7 @@
                   <!--</ul>-->
                     <ul class="tab">
                       <li><a href="#lunch">記入欄</a></li>
-                      <li><a href="#drink">プレビュー</a></li>
+                      <li><a href="#preview">プレビュー</a></li>
                       <li><a href="#dinner">見本</a></li>
                     </ul>
                     <div id="lunch" class="area">
@@ -111,7 +111,8 @@
                       <!--</ul>-->
                       <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios"%>
                     </div>
-                    <div id="drink" class="area">
+                    <div id="preview" class="area">
+                      <%#= markdown(@scenario.content) %>
                       <h2>ドリンク</h2>
                       <ul>
                         <li>ウーロン茶</li>

@@ -1,6 +1,6 @@
 class ScenariosController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :ensure_correct_user, only: %i[edit update]
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :ensure_correct_user, only: %i(edit update)
 
   def new
     @scenario = Scenario.new
@@ -10,10 +10,10 @@ class ScenariosController < ApplicationController
     @scenario = Scenario.new(scenario_params)
     @scenario.user_id = current_user.id
 
-    #↓短いが、空データも入れてしまう。
+    # ↓短いが、空データも入れてしまう。
     # tag_list.push(params[:scenario][:tag_id_1], params[:scenario][:tag_id_2], params[:scenario][:tag_id_3])
-    #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
-    tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
+    # 全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
+    tag_ids = params[:scenario][:tag_id_1].gsub(/　/, " ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/, " ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/, " ").strip
 
     if @scenario.save
 
@@ -24,14 +24,14 @@ class ScenariosController < ApplicationController
         ai_tags = Vision.get_image_data(@scenario.scenario_image)
         ai_tags.each do |ai_tag|
           # @scenario.tags.create(tag: ai_tag)
-         ai_tag = Translation.get_Translation_data(ai_tag)
-         tag_ids = tag_ids + ',' + ai_tag
+          ai_tag = Translation.get_Translation_data(ai_tag)
+          tag_ids = tag_ids + ',' + ai_tag
         end
       end
       tag_list = []
       tag_list = tag_ids.split(',')
-      #配列からnilと空文字を取り除く
-      tag_list= tag_list.compact.delete_if(&:empty?)
+      # 配列からnilと空文字を取り除く
+      tag_list = tag_list.compact.delete_if(&:empty?)
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ投稿が完了しました。'
     else
@@ -41,9 +41,9 @@ class ScenariosController < ApplicationController
 
   def edit
     @scenario = Scenario.find(params[:id])
-    #カラム「tag」のみ表示[pluck(:tag)]
-    #データを1つのみ表示[limit(1)]
-    #データの2番目から表示[offset(1)]
+    # カラム「tag」のみ表示[pluck(:tag)]
+    # データを1つのみ表示[limit(1)]
+    # データの2番目から表示[offset(1)]
     @tag_list_1 = @scenario.tags.limit(1).pluck(:tag)
     @tag_list_2 = @scenario.tags.limit(1).offset(1).pluck(:tag)
     @tag_list_3 = @scenario.tags.limit(1).offset(2).pluck(:tag)
@@ -52,8 +52,8 @@ class ScenariosController < ApplicationController
   def update
     @scenario = Scenario.find(params[:id])
     # tag_list = params[:scenario][:tag_ids].split(',')
-    #全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
-    tag_ids = params[:scenario][:tag_id_1].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/," ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/," ").strip
+    # 全角スペースを半角スペースに変換後、前後の空白文字を削除する[.strip]
+    tag_ids = params[:scenario][:tag_id_1].gsub(/　/, " ").strip + ',' + params[:scenario][:tag_id_2].gsub(/　/, " ").strip + ',' + params[:scenario][:tag_id_3].gsub(/　/, " ").strip
     if @scenario.update(scenario_params)
 
       # API実装
@@ -62,15 +62,15 @@ class ScenariosController < ApplicationController
         ai_tags = Vision.get_image_data(@scenario.scenario_image)
         ai_tags.each do |ai_tag|
           # @scenario.tags.create(tag: ai_tag)
-         ai_tag = Translation.get_Translation_data(ai_tag)
-         tag_ids = tag_ids + ',' + ai_tag
+          ai_tag = Translation.get_Translation_data(ai_tag)
+          tag_ids = tag_ids + ',' + ai_tag
         end
       end
 
       tag_list = []
       tag_list = tag_ids.split(',')
-      #配列からnilと空文字を取り除く
-      tag_list= tag_list.compact.delete_if(&:empty?)
+      # 配列からnilと空文字を取り除く
+      tag_list = tag_list.compact.delete_if(&:empty?)
       @scenario.save_tags(tag_list)
       redirect_to scenario_path(@scenario), notice: 'シナリオ編集が完了しました。'
     else
