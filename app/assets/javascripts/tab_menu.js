@@ -27,11 +27,23 @@ function GethashID (hashIDName){
 $(document).on('click','.tab a', function() {
   var idName = $(this).attr('href'); //タブ内のリンク名を取得
   console.log("tab_click");
-  if(idName == "#preview"){
-    console.log("tab_preview_click");
-    GethashID (idName);//設定したタブの読み込みと
-    return false;//aタグを無効にする
-  }
+  // if(idName == "#preview"){
+  //   console.log("tab_preview_click");
+
+  //   var text = $('#md-textarea').val();
+  //   if (text == "") {
+  //     return;
+  //   }
+  //   $.ajax({
+  //     url: '/api/articles/preview',
+  //     type: 'GET',
+  //     dataType: 'json',
+  //     data: { body: text }
+  //   })
+
+  //   GethashID (idName);//設定したタブの読み込みと
+  //   return false;//aタグを無効にする
+  // }
   GethashID (idName);//設定したタブの読み込みと
   return false;//aタグを無効にする
 });
