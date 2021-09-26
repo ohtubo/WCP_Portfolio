@@ -49,11 +49,12 @@ $(document).on('click','.tab a', function() {
 });
 
 
-// 上記の動きをページが読み込まれたらすぐに動かす
-$(window).on('load', function () {
-    $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
-    $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
-  var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
-  console.log("tab_load");
-  GethashID (hashName);//設定したタブの読み込み
-});
+// // 上記の動きをページが読み込まれたらすぐに動かす
+// $(window).on('load', function () {
+//     $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+//     $('.tab li:first-of-type').addClass("disabled"); //最初のliにactiveクラスを追加
+//     $('.area:first-of-type').addClass("is-disabled"); //最初の.areaにis-activeクラスを追加
+//   var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+//   console.log("tab_load");
+//   GethashID (hashName);//設定したタブの読み込み
+// });

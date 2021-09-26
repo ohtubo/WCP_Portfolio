@@ -219,33 +219,82 @@ ul, li{
 
 //---投稿編集TABレイアウト-----------------------------------------------------
 /*tabの形状*/
-.tab{
-  display: flex;
-  flex-wrap: wrap;
+ul.tab{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0rem;
 }
 
 .tab li a{
   display: block;
   background:#ddd;
   margin:0 1px;
-  padding:10px 20px;
+  padding:10px 30px;
 }
 
-/*liにactiveクラスがついた時の形状*/
-.tab li.active a{
-  background:#fff;
+.tab li:hover {
+  color: #698aab;                /* タブの文字色：緑色 */
+  cursor: pointer;             /* マウスポインタの形状を「指(指し示す形)」にする */
 }
+
+.tab li#markdown,
+.tab li#sample{
+    display: block;
+    padding: 8px 30px;
+    background: #C0C0C0;
+    border-top:  #000 1px solid;
+    border-right: #000 1px solid;
+    border-left: #000 1px solid;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    margin-bottom: 0;
+    // 中身と重ねる
+    z-index: 10;
+    position: relative;
+}
+
+
+.tab li#preview{
+    display: block;
+    padding: 8px 30px;
+    background: #C0C0C0;
+    border-top: #000 1px solid;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    margin-bottom: 0;
+    // 中身と重ねる
+    z-index: 10;
+    position: relative;
+
+}
+
+.tab li#markdown.disabled,
+.tab li#preview.disabled,
+.tab li#sample.disabled
+{
+   background: #fff;
+}
+
+.tab-choice-area{
+    border: #000  1px solid;
+    // タブと重ねる
+    margin-top: -1px;
+    z-index: 0;
+    position: relative;
+}
+
+
 
 /*エリアの表示非表示と形状*/
 .area {
 	display: none;/*はじめは非表示*/
 	opacity: 0;/*透過0*/
-// 	background: #fff;
-// 	padding:50px 20px;
+	background: #fff;
+	padding:20px 20px;
 }
 
 /*areaにis-activeというクラスがついた時の形状*/
-.area.is-active {
+.area.is-disabled {
     display: block;/*表示*/
     animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
     animation-duration: 2s;
