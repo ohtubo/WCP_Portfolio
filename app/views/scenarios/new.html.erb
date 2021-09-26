@@ -76,50 +76,18 @@
               </tr>
               <tr>
                 <td colspan="4">
-                  <%#= link_to root_path,class: "btn btn-outline-secondary text-center" do %>
-                       <!--見出し1追加-->
-                  <%# end %>
-                  <%#= link_to root_path,class: "btn btn-outline-secondary text-center" do %>
-                       <!--見出し2追加-->
-                  <%# end %>
-                  <!--<ul class="nav nav-tabs">-->
-                  <!--  <li class="nav-item">-->
-                  <!--    <a class="nav-link active" href="#">記入欄</a>-->
-                  <!--  </li>-->
-                  <!--  <li class="nav-item">-->
-                  <!--    <a class="nav-link" href="#">見本欄</a>-->
-                  <!--  </li>-->
-                  <!--</ul>-->
-
                   <div class="wrapper">
-                  <!--<ul class="nav nav-tabs tab">-->
-                  <!--  <li class="nav-item"><a class="nav-link" href="#lunch">ランチ</a></li>-->
-                  <!--  <li class="nav-item"><a class="nav-link" href="#drink">ドリンク</a></li>-->
-                  <!--  <li class="nav-item"><a class="nav-link" href="#dinner">ディナー</a></li>-->
-                  <!--</ul>-->
-          <ul class="tab">
-            <li id="markdown">記入欄</li>
-            <li id="preview">プレビュー</li>
-            <li id="sample">見本
-            </li>
-          </ul>
-          <!--<div class="col s4">-->
-          <!--<div class="btn area" id="markdown">markdown</div>-->
-          <!--</div>-->
-
-          <!--<div class="col s4">-->
-          <!--<div class="btn area" id="preview">preview</div>-->
-          <!--</div>-->
-
-          <!--<div class="col s4">-->
-          <!--<div class="btn area" ><span id="sample">mihon</span></div>-->
-          <!--</div>-->
-          <div class="tab-choice-area">
-            <div class="input-field area">
-              <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios materialize-textarea", id: "md-textarea"%>
-            </div>
-            <div id="preview-area" class="area"></div>
-            <div id="sample-area" class="area">
+                    <ul class="tab">
+                      <li id="markdown">記入欄</li>
+                      <li id="preview">プレビュー</li>
+                      <li id="sample">見本</li>
+                    </ul>
+                    <div class="tab-choice-area">
+                      <div class="input-field area">
+                        <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios materialize-textarea", id: "md-textarea"%>
+                      </div>
+                      <div id="preview-area" class="area"></div>
+                      <div id="sample-area" class="area">
                         <h2>Markdown記法一覧</h2>
                         <table class="table table-bordered table-striped">
                           <thead>
@@ -205,11 +173,10 @@
                             </tr>
                           </tbody>
                         </table>
-                      </div>
-          </div>
+                      </div><!--class="sample-area"-->
+                    </div><!--class="tab-choice-area"-->
                   </div>
-
-                  </td>
+                </td>
               </tr>
               <tr >
                 <td colspan="4" class="text-right">

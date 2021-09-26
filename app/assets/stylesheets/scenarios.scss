@@ -225,13 +225,6 @@ ul.tab{
     margin-bottom: 0rem;
 }
 
-.tab li a{
-  display: block;
-  background:#ddd;
-  margin:0 1px;
-  padding:10px 30px;
-}
-
 .tab li:hover {
   color: #698aab;                /* タブの文字色：緑色 */
   cursor: pointer;             /* マウスポインタの形状を「指(指し示す形)」にする */
@@ -282,7 +275,6 @@ ul.tab{
     z-index: 0;
     position: relative;
 }
-
 
 
 /*エリアの表示非表示と形状*/
