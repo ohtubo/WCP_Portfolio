@@ -1,10 +1,13 @@
 // jquery書きはじめ
 $(function (){
+
   // 処理（ページが読み込まれた時、フォームに残り何文字入力できるかを数えて表示する）
 
   //フォームに入力されている文字数を数える
   //フォームのidから値を取得
-  var input = document.getElementById("scenario_overview")
+  var input = document.getElementById("scenario_overview");
+
+  if (input != null) {
   var count = input.value.length
   // console.log(count);
   //残りの入力できる文字数を計算
@@ -29,4 +32,5 @@ $(function (){
     }
     $(".js-text-overview-count").text( "残り" + now_count + "文字");
   });
+  }
 });

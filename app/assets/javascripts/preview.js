@@ -1,3 +1,4 @@
+    /*global $*/
     $(function() {
 
     // previewボタンが押されたらイベント発火

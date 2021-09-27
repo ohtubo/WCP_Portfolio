@@ -283,6 +283,9 @@ ul.tab{
 	opacity: 0;/*透過0*/
 	background: #fff;
 	padding:20px 20px;
+	min-height:550px; 
+    height:auto !important; 
+    height:550px;
 }
 
 /*areaにis-activeというクラスがついた時の形状*/
