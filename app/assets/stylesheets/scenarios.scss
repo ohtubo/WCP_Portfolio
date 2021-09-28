@@ -283,9 +283,15 @@ ul.tab{
 	opacity: 0;/*透過0*/
 	background: #fff;
 	padding:20px 20px;
-	min-height:550px; 
-    height:auto !important; 
+
+// 	エリア高さ調整
+	min-height:550px;
+    height:auto !important;
     height:550px;
+// 	エリア幅調整
+	min-width:1050px;
+    height:auto !important;
+    height:1050px;
 }
 
 /*areaにis-activeというクラスがついた時の形状*/
