@@ -1,3 +1,4 @@
+/*global $*/
 // jquery書きはじめ
 $(function (){
 
