@@ -1,0 +1,121 @@
+  <%# if current_page?(action: 'index') %>
+  <!--ここはindexページ-->
+  <%# elsif current_page?(action: 'show') %>
+  <!--ここはSHOWページ-->
+  <%# end %>
+
+<div id="scenario_<%= @scenario.id %>" class="container px-5 px-sm-0 mt-5 ">
+  <div class="row">
+    <div class="col-md-8">
+
+      <div id="scenario_favorite_show_<%= @scenario.id %>">
+        <!--いいね-->
+        <%= render 'scenario_favorites/favorite-btn-show', scenario: @scenario %>
+      </div>
+
+      <!--作品紹介-->
+      <h2><%= @scenario.title %></h2>
+      <div>
+        <%= link_to scenarios_path(search_category: "システムカテゴリ",search_word: @scenario.system_category ,sort: 5),class: 'text-decoration-none' do %>
+          <div class="fas fa-star btn btn-sm btn-danger" ><%= @scenario.system_category %> </div>
+        <% end %>
+        <% @scenario.tags.each do |tag| %>
+          <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: 'text-decoration-none' do %>
+            <div class="fas fa-tag btn btn-sm btn-warning "><%= tag.tag %></div>
+          <% end %>
+        <% end %></br>
+      </div>
+      <div>
+        作者：<%= link_to @scenario.user.name, user_path(@scenario.user) %>
+        更新日：<%= l @scenario.updated_at, format: :short %>
+      </div>
+      <div>
+        難易度：<%= @scenario.level %>
+        |
+        人数：<%= @scenario.lower_limit_count %>～<%= @scenario.upper_limit_count %>
+        |
+        プレイ時間<%= @scenario.play_time %>[<%= @scenario.play_genre %>]</br>
+      </div>
+      <div class="b-break">
+        <!--改行をtag[<br>]に変換する-->
+        <%=safe_join(@scenario.overview.split("\n"),tag(:br))%>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div>
+        <%= attachment_image_tag @scenario, :scenario_image, :fill, 200, 200, fallback: "no_image.jpg",size: '200x200' %>
+      </div>
+    </div>
+  </div>
+  <div class='row bbd12'></div>
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+        <%= markdown(@scenario.content) %>
+      </div>
+    </div>
+    <div class="col-md-4">
+<!--ユーザー情報------------------------------------------------------------------------------------------------------------>
+      <table>
+        <tr>
+          <%= attachment_image_tag(@user, :icon_image, :fill, 40, 40, fallback: "no_image.jpg",size: '50x50') %>
+          <%= @user.name %>
+        </tr>
+        <tr>
+      	  <th>
+      	    <% if @user.self_introduction.present? %>
+      	      <%=safe_join(@user.self_introduction.split("\n"),tag(:br))%>
+      	    <% end %>
+          </th>
+        </tr>
+        <tr>
+      	  <th>
+      	    <% unless current_user.nil? %>
+        	    <% unless current_user.id == @user.id %>
+                <div id="follow_user_<%= @user.id %>">
+                  <%= render 'follows/follow-btn', user: @user %>
+                </div>
+        	    <% else %>
+        	      <%= link_to "編集", edit_scenario_path(@scenario),class:"btn btn-sm btn-success btn-block", data: {"turbolinks" => false} %>
+        	    <% end %>
+      	    <% end %>
+      	  </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class='row bbd12'></div>
+  <div class="row">
+<!--作品コメント一覧--------------------------------------------------------------------------------------------->
+    <div class="list-comments">
+      <div class="col-md-8">
+        <%= render 'scenario_comments/index', scenario: @scenario %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h2>コメントの投稿</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div id="comments_error">
+        <% unless @scenario_comment.nil? %>
+          <%= render 'layouts/error_messages', model: @scenario_comment %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    作品コメント入力
+  </div>
+  <div class="row">
+    <div class="new-comment">
+      <%= form_with(model:[@scenario, @Scenario_comment]) do |f| %>
+      <%= f.text_area :comment,size: '80x5',placeholder: "コメントをここに" %></br>
+        <div class="text-right"><%= f.submit "送信する" ,class: 'btn btn-sm btn-dark'%></div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

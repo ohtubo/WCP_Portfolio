@@ -1,0 +1,17 @@
+ <% unless current_user.nil? %>
+  <% if scenario.favorited_by?(current_user) %>
+    <p>
+      <%= link_to scenario_scenario_favorites_path(scenario), method: :delete, remote: true,class:"btn btn-outline-info  pt-1 pb-1 pl-3 pr-3" do %>
+        いいね解除♥<%= scenario.scenario_favorites.count  %>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to scenario_scenario_favorites_path(scenario), method: :post , remote: true,class:"btn btn-outline-info  pt-1 pb-1 pl-3 pr-3" do %>
+        いいねする♡<%= scenario.scenario_favorites.count %>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+
+

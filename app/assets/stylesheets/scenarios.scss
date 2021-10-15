@@ -1,0 +1,312 @@
+// Place all the styles related to the scenarios controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@charset "utf-8";
+
+.bbd {
+    border-bottom: px dotted #000000;
+    // padding: 25px 0;
+}
+
+.bbd12 {
+    border-bottom: 1px solid #DCDCDC;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.table-condensed > tbody > tr > td,{
+  padding: 25px;  /* 5px の値を変更 */
+}
+
+
+.form-control-scenarios{
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+#leftside-navigation{
+  position: fixed;
+  /*stickyで固定*/
+  position: -webkit-sticky;/*Safari*/
+  position: sticky;
+
+  top: 70px;
+  left: 0px;
+  // width: 150px;
+  height: 70vh;
+  background: lightgray;
+
+span {
+width:100px;
+}
+
+// 改行指示
+.b-break{
+  word-break: break-all;
+}
+
+
+// ドロップダウンのフレーム------------------
+  /* 縦方向のスクロールバーを表示 */
+  overflow-y: scroll;
+
+  /* IE などのスクロールバーの色設定 */
+  scrollbar-face-color: #999;
+  scrollbar-track-color: #eee;
+
+  /* スマホ用の慣性スクロール */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Chrome などでは細めのきれいなスクロールバーを表示 */
+#leftside-navigation::-webkit-scrollbar {
+  width: 5px;
+}
+#leftside-navigation::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+}
+#leftside-navigation::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+// ドロップダウンメニュー----------------------------------------------------
+ul, li{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+#leftside-navigation {
+    background-color: #f2f2f2;
+    box-shadow: 0px 0px 10px #ccc;
+    border: 1px solid #bbb;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #666;
+    font-weight: bold;
+    padding-top: 10px;
+    width: 100%;
+}
+#leftside-navigation a {
+    text-decoration: none;
+    color: #666;
+}
+
+#leftside-navigation a:hover {
+    color: #ffffff;
+}
+
+#leftside-navigation span > a:hover {
+    color: #dcd6d9;
+}
+
+#menu {
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    border-bottom-color: #CCC;
+}
+.main_menu,
+.main_menu-one,
+.main_menu-two
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #f2f2f2;
+    font-weight: bold;
+    padding-left: 20px;
+    text-indent: 10;
+    display: block;
+    position: relative;
+    border-top-width: 1px;
+    border-top-style: dashed;
+    border-top-color: #CCC;
+    width: 100%;
+}
+.main_menu::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border: 0px;
+    border-top: solid 2px #739100;
+    border-right: solid 2px #739100;
+    -ms-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -6px;
+}
+.main_menu-two::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border: 0px;
+    border-top: solid 2px #739100;
+    border-right: solid 2px #739100;
+    -ms-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -6px;
+}
+
+.open::before {
+    -ms-transform: rotate(315deg);
+    -webkit-transform: rotate(315deg);
+    transform: rotate(315deg);
+    margin-top: -3px;
+}
+#menu .main_menu:hover ,
+.main_menu-one:hover,
+.main_menu-two:hover,.open {
+    background-color: #87aa58;
+    color: #FFF;
+}
+
+#menu .main_menu:hover::before,
+.main_menu-two:hover::before ,.open::before{
+    border-top: solid 2px #ffffff;
+    border-right: solid 2px #ffffff;
+}
+.sub_menu li a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-indent: 40px;
+    background-color: #e3ecd1;
+    display: block;
+    position: relative;
+    border-top-width: 1px;
+    border-top-style: dashed;
+    border-top-color: #CCC;
+}
+.sub_menu li a::before{
+    content: '';
+    width: 0;
+    height: 0;
+    border: solid 4px transparent;
+    border-left: solid 6px #739100;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -4px;
+    margin-left: 25px;
+}
+.sub_menu li a:hover{
+    background-color: #9fbb79;
+}
+.sub_menu li a:hover::before {
+    border-left: solid 6px #ffffff;
+}
+.third_menu li a{
+    padding-left: 40px;
+    border-top-style: none;
+    padding-bottom: 6px;
+    padding-top: 6px;
+}
+.third_menu li a::before{
+    margin-left: 65px;
+}
+// -------------------------------------------------------
+
+
+//---投稿編集TABレイアウト-----------------------------------------------------
+/*tabの形状*/
+ul.tab{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0rem;
+}
+
+.tab li:hover {
+  color: #698aab;                /* タブの文字色：緑色 */
+  cursor: pointer;             /* マウスポインタの形状を「指(指し示す形)」にする */
+}
+
+.tab li#markdown,
+.tab li#sample{
+    display: block;
+    padding: 8px 30px;
+    background: #C0C0C0;
+    border-top:  #000 1px solid;
+    border-right: #000 1px solid;
+    border-left: #000 1px solid;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    margin-bottom: 0;
+    // 中身と重ねる
+    z-index: 10;
+    position: relative;
+}
+
+
+.tab li#preview{
+    display: block;
+    padding: 8px 30px;
+    background: #C0C0C0;
+    border-top: #000 1px solid;
+    border-top-right-radius: .5rem;
+    border-top-left-radius: .5rem;
+    margin-bottom: 0;
+    // 中身と重ねる
+    z-index: 10;
+    position: relative;
+
+}
+
+.tab li#markdown.disabled,
+.tab li#preview.disabled,
+.tab li#sample.disabled
+{
+   background: #fff;
+}
+
+.tab-choice-area{
+    border: #000  1px solid;
+    // タブと重ねる
+    margin-top: -1px;
+    z-index: 0;
+    position: relative;
+}
+
+
+/*エリアの表示非表示と形状*/
+.area {
+	display: none;/*はじめは非表示*/
+	opacity: 0;/*透過0*/
+	background: #fff;
+	padding:20px 20px;
+
+// 	エリア高さ調整
+	min-height:550px;
+    height:auto !important;
+    height:550px;
+// 	エリア幅調整
+	min-width:1050px;
+    height:auto !important;
+    height:1050px;
+}
+
+/*areaにis-activeというクラスがついた時の形状*/
+.area.is-disabled {
+    display: block;/*表示*/
+    animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes displayAnime{
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

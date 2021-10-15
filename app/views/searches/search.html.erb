@@ -1,0 +1,63 @@
+<!--検索機能画面(隠し画面)-->
+<div class="container py-5">
+  <div class="row py-5">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <%= form_with url: scenarios_path(sort: 3), method: :get, local: true do |f| %>
+      <%= f.hidden_field :sort, :value => 3 %>
+      <table width="700" class="top-margin table-condensed table-borderless">
+        <thead>
+          <tr class="pb-3">
+            <th colspan="2">
+              <h2 class="text-left">シナリオ詳細検索</h2>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="table-colored">
+          <tr class="bbd">
+            <td>
+              <%= f.label "検索条件" %></br>
+               OR：部分一致検索</br>
+              AND：完全一致検索</br>
+            </td>
+            <td><%= f.select :search_select, Scenario.search_selects.keys, {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %></td>
+          </tr>
+          <tr class="bbd">
+            <td><%= f.label "システムカテゴリ" %></td>
+            <td><%= f.select :system_category, Scenario.categories.keys, {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %></td>
+          </tr>
+          <tr class="bbd">
+            <td><%= f.label "難易度" %></td>
+            <td><%= f.select :level, Scenario.levels.keys, {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %></td>
+          </tr>
+          <tr class="bbd">
+            <td>
+              <%= f.label "推奨人数" %>
+            </td>
+            <td>
+              <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %></td>
+            </td>
+          </tr>
+          <tr class="bbd">
+            <td>
+              <%= f.label "プレイ時間" %>
+            </td>
+            <td>
+              <%= f.select :play_genre, Scenario.play_genres.keys, {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %>
+              <%= f.select :play_time , Scenario.play_times.keys , {include_blank: "選択して下さい"}, {class: 'form-control-searches'} %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="text-center">
+              <%= f.submit '検索',class:"btn btn-sm btn-success py-1 pl-5 pr-5" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!--_search_index.html.erb-->
+<!--<%#= render 'scenarios/index', scenarios: @records %>-->

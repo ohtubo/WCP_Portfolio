@@ -1,0 +1,197 @@
+<div class="container mt-5">
+  <div class="row">
+      <%= form_with model: @scenario, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+        <table class="table table-condensed table-borderless">
+          <thead>
+            <tr>
+              <th colspan="2">
+                <h2 class="text-left">
+                  シナリオを投稿
+                </h2>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="bbd">
+                <!--class="bbd"-->
+                <td style="width: 20%"><%= f.label "タイトル" %></td>
+                <td>
+                  <%= f.text_field :title,  size: 50, class:"form-control-scenarios js-text-title"%></br>
+                  <span class="js-text-title-count"></span>
+                <td>
+                <td style="width: 20%"></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "概要" %></td>
+                <td>
+                  <%= f.text_area :overview , :size=>"80x5", class:"form-control-scenarios js-text-overview"%></br>
+                  <span class="js-text-overview-count"></span>
+                </td>
+
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "シナリオ画像" %></td>
+                <td><%= f.attachment_field :scenario_image %></td>
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "システムカテゴリ" %></td>
+                <td colspan="3">
+                  <%= f.select :system_category, Scenario.categories.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "シナリオタグ" %></td>
+                <td colspan="3">
+                  <%= f.text_field :tag_id_1, class:"form-control-scenarios"%>
+                  <%= f.text_field :tag_id_2, class:"form-control-scenarios"%>
+                  <%= f.text_field :tag_id_3, class:"form-control-scenarios"%>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td><%= f.label "難易度" %></td>
+                <td><%= f.select :level, Scenario.levels.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%></td>
+                <td></td>
+              </tr>
+              <tr class="bbd">
+                <td >
+                  <%= f.label "推奨人数" %>
+                </td>
+                <td colspan="3">
+                  <%= f.select :lower_limit_count, Scenario.lower_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                  ～
+                  <%= f.select :upper_limit_count, Scenario.upper_limit_counts.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                </td>
+              </tr>
+              <tr class="bbd">
+                <td>
+                  <%= f.label "プレイ時間" %>
+                </td>
+                <td colspan="3">
+                  <%= f.select :play_genre, Scenario.play_genres.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                  <%= f.select :play_time, Scenario.play_times.keys, {include_blank: "選択して下さい"}, {class: 'form-control-scenarios'}%>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4">
+                  <div class="wrapper">
+                    <ul class="tab">
+                      <li id="markdown">記入欄</li>
+                      <li id="preview">プレビュー</li>
+                      <li id="sample">見本</li>
+                    </ul>
+                    <div class="tab-choice-area">
+                      <div class="input-field area">
+                        <%= f.text_area :content, placeholder: "Markdown記法", :size=>"150x25" , class:"form-control-scenarios materialize-textarea", id: "md-textarea"%>
+                      </div>
+                      <div id="preview-area" class="area"></div>
+                      <div id="sample-area" class="area">
+                        <h2>Markdown記法一覧</h2>
+                        <table class="table table-bordered table-striped">
+                          <thead>
+                            <tr>
+                              <th scope="col">種類</th>
+                              <th scope="col">表記方法</th>
+                              <th scope="col">表記例</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>段落</td>
+                              <td>空白行</td>
+                              <td>1段落目<p></p>
+                              <p>2段落目</p></td>
+                            </tr>
+                            <tr>
+                              <td>改行</td>
+                              <td>行末に2つ以上の半角スペース</td>
+                              <td>1行目　　（行末に2つ以上の半角スペース）<br>
+                              2行目</td>
+                            </tr>
+                            <tr>
+                              <td>見出し</td>
+                              <td>行頭に[#]<br>
+                              （#の個数がH1～H6）</td>
+                              <td>#見出し1<br>
+                              ##見出し2</td>
+                            </tr>
+                            <tr>
+                              <td>強調</td>
+                              <td>テキストの前後に[_]</td>
+                              <td>_強調_</td>
+                            </tr>
+                            <tr>
+                              <td>リスト</td>
+                              <td>行頭に *または-</td>
+                              <td>* リスト項目1<br>
+                              * リスト項目2<br>
+                              * リスト項目3</td>
+                            </tr>
+                            <tr>
+                              <td>番号付リスト</td>
+                              <td>行頭に 数字.</td>
+                              <td>1. リスト項目1<br>
+                              2. リスト項目2<br>
+                              3. リスト項目3</td>
+                            </tr>
+                            <tr>
+                              <td>引用</td>
+                              <td>行頭に[&gt;]</td>
+                              <td>"&gt;"メールの返信と同じですね</td>
+                            </tr>
+                            <tr>
+                              <td>ソースコード</td>
+                              <td>テキストの前後に`</td>
+                              <td>`npm run dev`</td>
+                            </tr>
+                            <tr>
+                              <td>区切り線</td>
+                              <td>3つ以上の * か _ または –</td>
+                              <td>---</td>
+                            </tr>
+                            <tr>
+                              <td>折りたたみ</td>
+                              <td>追加情報としたい内容を、detailsタグで囲む<br>
+                              要約として表示したい文章をsummaryタグで囲む<br>
+                              (タグ内の半角スペースは削除すること)<br>
+                              </td>
+                              <td>
+                                  < details>< summary>Qiita(キータ)は、プログラマのための技術情報共有サービスです。< /summary><br>
+                                  プログラミングに関することをどんどん投稿して、知識を記録、共有しましょう。<br>
+                                  Qiitaに投稿すると、自分のコードやノウハウを見やすい形で残すことができます。<br>
+                                  技術情報はテキストファイルへのメモではなく、タグを付けた文章、<br>
+                                  シンタックスハイライトされたコードで保存することで初めて再利用可能な知識になる、そうQiitaでは考えています。< /details>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>画像</td>
+                              <td>行頭に !</td>
+                              <td>![画像１](/assets/Title-8c5de9d151f53bab8dc9c0f324dfb45b77116fbe6db6afd8364245ec71295329.jpg “タイトル画像”)</td>
+                            </tr>
+                            <tr>
+                              <td>リンク</td>
+                              <td>[タイトル](リンク先URL)</td>
+                              <td>[TRPGにはまろう!](https://trpgnihamarou.work)</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div><!--class="sample-area"-->
+                    </div><!--class="tab-choice-area"-->
+                  </div>
+                </td>
+              </tr>
+              <tr >
+                <td colspan="4" class="text-right">
+                  <%= f.submit "シナリオを投稿する" ,class:"btn btn-sm btn-success pt-1 pb-1 pl-3 pr-3"%>
+                </td>
+              </tr>
+
+          </tbody>
+        </table>
+      <% end %>
+  </div>
+</div>
+
+

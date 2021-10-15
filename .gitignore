@@ -29,3 +29,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/.env
+#ローカルで上げた画像データを本番環境に持ってこないようにする
+/public/uploads/*

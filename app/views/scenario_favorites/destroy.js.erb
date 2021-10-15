@@ -1,0 +1,4 @@
+$("#scenario_favorite_index_<%= @scenario.id %>").html("<%= j(render 'scenario_favorites/favorite-btn-index', scenario: @scenario) %>");
+$("#scenario_favorite_show_<%= @scenario.id %>").html("<%= j(render 'scenario_favorites/favorite-btn-show', scenario: @scenario) %>");
+
+$("#flash_message").html("<%= j(render 'layouts/flash') %>");

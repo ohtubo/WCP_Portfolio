@@ -1,0 +1,63 @@
+<% if scenarios.present? %>
+  <table class="table table-hover">
+    <tbody>
+      <% scenarios.each do |scenario| %>
+        <tr>
+          <td class="align-middle">
+            <%= link_to scenario_path(scenario) do %>
+              <%= attachment_image_tag scenario, :scenario_image, :fill, 90, 120, fallback: "no_image.jpg",size: '90x120'%>
+            <% end %>
+          </td>
+          <td>
+            <h3>
+              <%= link_to scenario.title, scenario_path(scenario), class: "scenario_#{scenario.id} text-dark" %></br>
+            </h3>
+            <%= link_to scenarios_path(search_category: "システムカテゴリ",search_word: scenario.system_category ,sort: 5),class: 'text-decoration-none' do %>
+              <div class="btn btn-sm btn-danger fas fa-star" ><%= scenario.system_category %> </div>
+            <% end %>
+
+            |
+            <% scenario.tags.each do |tag| %>
+              <%= link_to scenarios_path('tag_id': tag.id, sort: 4),class: ' text-decoration-none' do %>
+                <div class="tag btn btn-sm btn-warning fas fa-tag"><%= tag.tag %></div>
+              <% end %>
+            <% end %></br>
+            作者：<%= link_to scenario.user.name, user_path(scenario.user) %>
+            |
+            作成日：<%= l scenario.created_at, format: :short %></br>
+            <div>
+              難易度：<%= scenario.level %>
+              |
+              人数：<%= scenario.lower_limit_count %>～<%= scenario.upper_limit_count %>
+              |
+              時間：<%= scenario.play_time %>[<%= scenario.play_genre %>]
+            </div>
+              <% if scenario.user == current_user %>
+                <div class="text-right">
+                  <%= link_to "編集", edit_scenario_path(scenario),class:"btn btn-sm btn-success", data: {"turbolinks" => false} %>
+                  |
+                  <%= link_to "削除", scenario_path(scenario), method: :delete, "data-confirm" => "本当に消しますか？" ,class:"btn btn-sm btn-danger" %>
+                </div>
+              <% else %>
+                <div class="b-break"><%=safe_join(scenario.overview.split("\n"),tag(:br))%></div>
+              <% end %>
+          </td>
+          <td id="scenario_favorite_index_<%= scenario.id %>" class=" align-middle">
+            <%= render 'scenario_favorites/favorite-btn-index', scenario: scenario %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>
+<% else %>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td>
+          情報は存在しません
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+

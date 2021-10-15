@@ -1,0 +1,65 @@
+<!--ユーザー詳細画面のプロフィール表示-->
+<!--いいねしたシナリオ一覧表示ボタン,投稿シナリオ一覧表示ボタン,フォロー一覧表示ボタン,フォロワー一覧表示ボタン-->
+<table class='table table-borderless'>
+  <tr>
+    <div class='container px-5'>
+      <%= attachment_image_tag(user, :icon_image, :fill, 150, 150, fallback: "no_image.jpg",size: '150x150') %>
+    </div>
+  </tr>
+  <tr>
+	  <th><%= user.name %></th>
+  </tr>
+  <tr>
+    <!--.split("\n"),tag(:br)：改行をそのまま表示する-->
+	  <th>
+	    <% if user.self_introduction.present? %>
+  	    <%=safe_join(user.self_introduction.split("\n"),tag(:br))%>
+	    <% end %>
+	  </th>
+  </tr>
+</table>
+
+<div class='row'>
+  <% unless current_user.nil? %>
+    <% if current_user == user %>
+    <div class="btn-block" >
+      <%= link_to 'プロフィール編集',edit_user_path(user),class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" %>
+    </div>
+    <% else %>
+      <div id="follow_user_<%= user.id %>" class="btn btn-block">
+        <%= render 'follows/follow-btn', user: user %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class='row bbd4'></div>
+<div class='row'>
+  <%= link_to scenario_favorites_user_path(user),class: "btn btn-outline-secondary btn-block text-center" do %>
+     <%= @user.scenario_favorites.count %></br>
+     いいねしたシナリオ
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to user_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+     <%= @user.scenarios.count %></br>
+     投稿シナリオ
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to  user_followings_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+  <%= @user.followings.count %></br>
+  フォロー
+  <% end %>
+</div>
+
+<div class='row pt-3'>
+  <%= link_to  user_followers_path(user.id),class: "btn btn-outline-secondary btn-block text-center" do %>
+  <div id="followers_count">
+    <%= render 'follows/follow-count',user: @user %>
+  </div>
+
+  フォロワー
+  <% end %>
+</div>

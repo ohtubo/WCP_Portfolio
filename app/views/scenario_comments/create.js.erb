@@ -1,0 +1,14 @@
+$("#scenario_<%= @scenario.id %> .list-comments").html("<%= escape_javascript(render 'scenario_comments/index', scenario: @scenario) %>");
+<!--$("#error_comment_<%#= @Scenario_comment.id %>").html("<%#= escape_javascript(render 'scenario_comments/error', error_comment: @error_comment) %>");-->
+$("#comments_error").html("");
+$("#scenario_comment_comment").val("");
+
+<!--"#scenario_<%#= @scenario.id %> .list-comments" 「id」なくてもできるが判別しやすい-->
+<!--#scenario_comment_comment：formのid:確認は検証ツールで出来る-->
+<!-- AA > from > textarea：怪談方式でも可能-->
+
+<!--非同期は慣れないうちは新しくクラスを作る-->
+<!--非同期にブートストラップのクラス名使用は解りずらい,CSSはBEM記法を使っているならば良い-->
+<!--いくら階層があってもオンリーであればクラス指定可能-->
+<!--idは詳細に区別した方が解り易い、基本ページに1つ-->
+

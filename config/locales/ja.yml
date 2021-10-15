@@ -1,0 +1,30 @@
+ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y年 %m月 %d日"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "空になっています。入力してください。"
+            self_introduction:
+              blank: "空になっています。入力してください。"
+    attributes:
+      user:
+        name: "ユーザーネーム"
+        self_introduction: "自己紹介"
+      scenario:
+        title: "タイトル"
+        overview: "概要"
+        system_category: "システムカテゴリ"
+        level: "難易度"
+        lower_limit_count: "推奨人数[下限値]"
+        upper_limit_count: "推奨人数[上限値]"
+        play_genre: "プレイ時間[ジャンル]"
+        play_time: "プレイ時間[時間]"
+        content: "シナリオ内容"
+      scenario_comment:
+        comment: "コメント"

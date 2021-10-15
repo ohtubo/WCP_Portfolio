@@ -1,0 +1,27 @@
+  <div class="row">
+    <div class="main-visual">
+      <div class="main-visual-content" >
+        <p class="text-white">
+          <strong>TRPGにはまろう！</strong>とは……
+        </p>
+        <p class="text-white" >
+          TRPGシナリオを投稿したい！
+          TRPGシナリオを探したい！
+          という方のためのサイトです
+        </p>
+      </div>
+      <!--<div class="main-bg-color">-->
+        <div class="container py-3">
+          <div class="row">
+            <h2>新着シナリオ</h2>
+            <%= render 'scenarios/index', scenarios: @scenarios %>
+          </div>
+          <div class="d-flex justify-content-center">
+             <%= paginate(@scenarios) %>
+          </div>
+        </div>
+      <!--</div>-->
+    </div>
+  </div>
+
+

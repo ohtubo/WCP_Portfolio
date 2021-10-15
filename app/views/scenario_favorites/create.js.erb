@@ -1,0 +1,6 @@
+$("#scenario_favorite_index_<%= @scenario.id %>").html("<%= j(render 'scenario_favorites/favorite-btn-index', scenario: @scenario) %>");
+$("#scenario_favorite_show_<%= @scenario.id %>").html("<%= j(render 'scenario_favorites/favorite-btn-show', scenario: @scenario) %>");
+
+$("#flash_message").html("<%= j(render 'layouts/flash') %>");
+<!--id指定を行うときはテーブルの処理の時はidを使用する-->
+<!--変更場所が見つからないならエラーが出ない-->
